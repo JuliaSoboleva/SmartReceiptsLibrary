@@ -3,7 +3,7 @@
 
     <!-- =================== App Details ===================== -->
     <string name="sr_app_name">Smart Receipts</string>
-    <string name="sr_app_name_plus">Smart Receipts Plus</string>
+    <string name="sr_app_name_plus">T&amp;E Reports</string>
 
     <!-- ================ Main Menu Options ================== -->
     <string name="menu_main_settings">Settings</string>
