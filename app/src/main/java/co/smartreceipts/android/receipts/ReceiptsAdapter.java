@@ -17,10 +17,8 @@ import com.google.common.base.Preconditions;
 import com.h6ah4i.android.widget.advrecyclerview.utils.AbstractDraggableItemViewHolder;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import co.smartreceipts.android.R;
 import co.smartreceipts.android.activities.NavigationHandler;
@@ -292,7 +290,7 @@ public class ReceiptsAdapter extends DraggableCardsAdapter<Receipt> implements R
                         .centerCrop()
                         .into(image);
             } else {
-                setIcon(image, R.drawable.ic_receipt_white_24dp);
+                setIcon(image, R.drawable.ic_receipt_24dp);
             }
 
             price.setText(receipt.getPrice().getCurrencyFormattedPrice());

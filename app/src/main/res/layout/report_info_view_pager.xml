@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_below="@+id/toolbar"
         android:layout_gravity="top"
-        android:background="?attr/colorPrimary"
+        android:background="@color/color_toolbar"
         app:tabGravity="center"
         app:tabMode="scrollable" />
 

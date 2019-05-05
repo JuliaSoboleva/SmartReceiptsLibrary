@@ -1,98 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
 
-    <include layout="@layout/toolbar"
-             android:id="@+id/toolbar"/>
-    
-	<co.smartreceipts.android.widget.ui.PinchToZoomImageView
-		android:id="@+id/receiptimagefragment_imageview"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:scaleType="fitCenter"
-		android:layout_below="@+id/toolbar" />
-	
-	<LinearLayout
-	    android:id="@+id/footer"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <co.smartreceipts.android.widget.ui.PinchToZoomImageView
+        android:id="@+id/receiptimagefragment_imageview"
         android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_alignParentBottom="true"
-    	android:orientation="horizontal"
-    	android:baselineAligned="false"
-    	android:background="@color/transparent_overlay"
-    	android:visibility="gone"
-		tools:visibility="visible">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:scaleType="fitCenter" />
 
-		<LinearLayout
-		    android:id="@+id/rotate_ccw"
-		    android:layout_height="wrap_content"
-		    android:layout_width="0dp"
-		    android:orientation="vertical"
-		    android:layout_weight="1" 
-		    android:gravity="center"
-		    android:background="@drawable/default_selector" >
-		    <ImageView
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_rotate_left_24dp"
-			    android:contentDescription="@string/menu_receiptimage_rotate_ccw" />
-		    <TextView
-		        android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-		        android:textColor="@android:color/white"
-				android:textSize="14sp"
-		        android:textStyle="italic"
-		        android:text="@string/menu_receiptimage_rotate_ccw" />
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/retake_photo"
-		    android:layout_height="wrap_content"
-		    android:layout_width="0dp"
-		    android:orientation="vertical"
-		    android:layout_weight="1"
-		    android:gravity="center"
-		    android:background="@drawable/default_selector" >
-		    <ImageView
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_photo_camera_white_24dp"
-			    android:contentDescription="@string/menu_receiptimage_retake" />
-		    <TextView
-		        android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-		        android:textColor="@android:color/white"
-				android:textSize="14sp"
-		        android:textStyle="italic"
-		        android:text="@string/menu_receiptimage_retake" />
-		</LinearLayout>
-		
-		<LinearLayout
-		    android:id="@+id/rotate_cw"
-		    android:layout_height="wrap_content"
-		    android:layout_width="0dp"
-		    android:orientation="vertical"
-		    android:layout_weight="1"
-		    android:gravity="center"
-		    android:background="@drawable/default_selector" >
-		    <ImageView
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_rotate_right_24dp"
-			    android:contentDescription="@string/menu_receiptimage_rotate_cw" />
-		    <TextView
-		        android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-		        android:textColor="@android:color/white"
-				android:textSize="14sp"
-		        android:textStyle="italic"
-		        android:text="@string/menu_receiptimage_rotate_cw" />
-		</LinearLayout>
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c5"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
 
-	</LinearLayout>
-	<ProgressBar
+        <LinearLayout
+            android:id="@+id/rotate_ccw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/menu_receiptimage_rotate_ccw"
+                android:src="@drawable/ic_rotate_left_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_receiptimage_rotate_ccw"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/retake_photo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/menu_receiptimage_retake"
+                android:src="@drawable/ic_photo_camera_24dp"
+                android:tint="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_receiptimage_retake"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rotate_cw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/menu_receiptimage_rotate_cw"
+                android:src="@drawable/ic_rotate_right_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_receiptimage_rotate_cw"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

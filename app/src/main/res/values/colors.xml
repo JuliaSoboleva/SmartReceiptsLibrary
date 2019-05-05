@@ -2,37 +2,58 @@
 <resources>
 
     <!-- Palette for Core App (Material Palette) -->
-    <color name="smart_receipts_colorPrimary">#4527a0</color>
-    <color name="smart_receipts_colorPrimaryDark">#311b92</color>
-    <color name="smart_receipts_colorPrimaryDark_disabled">#8A311b92</color>
-    <color name="smart_receipts_colorPrimaryDark_pressed">#200a81</color>
-    <color name="smart_receipts_colorAccent">#42a5f5</color>
+    <color name="smart_receipts_colorPrimary">@color/c5</color>
+    <color name="smart_receipts_colorPrimaryDark">@color/c5</color>
+    <color name="smart_receipts_colorPrimaryDark_disabled">@color/c5_transparent</color>
+    <color name="smart_receipts_colorPrimaryDark_pressed">@color/c5_darker</color>
+    <color name="smart_receipts_colorAccent">@color/c4</color>
+
     <color name="smart_receipts_ripple_light">#44FFFFFF</color>
     <color name="smart_receipts_ripple_dark">#44000000</color>
-    <color name="smart_receipts_colorSuccess">#2e7d32</color>
-    <color name="smart_receipts_colorError">#c62828</color>
-    <color name="text_primary_color">#DFFFFFFF</color>
-    <color name="text_secondary_color">#8AFFFFFF</color>
-    <color name="accent_text_primary_color">@color/text_primary_color</color>
+    <color name="smart_receipts_colorSuccess">@color/c5</color>
+    <color name="smart_receipts_colorError">@color/c3</color>
+
+    <color name="text_primary_color">@color/c1</color>
+    <color name="text_secondary_color">@color/c2</color>
+    <color name="accent_text_primary_color">@color/c1</color>
     <color name="accent_text_secondary_color">@color/text_secondary_color</color>
+
     <color name="fab_transparency_mask">#40FFFFFF</color>
-    <color name="window_background_color">#0B0114</color>
-    <color name="transparent_overlay">#66000000</color>
+    <color name="window_background_color">@color/color_main_bg</color>
+    <color name="transparent_overlay">#39000000</color>
 
     <!-- Palette for lists and cards -->
-    <color name="card_background">#292929</color>
-    <color name="list_background">@color/window_background_color</color>
-    <color name="selected_card_background">#424242</color>
-    <color name="card_image_background">#303030</color>
-    <color name="card_image_tint">#8A8A8A</color>
+    <color name="card_background">@color/g3</color>
+    <color name="list_background">@color/color_main_bg</color>
+    <color name="selected_card_background">@color/g2</color>
+    <color name="card_image_tint">@color/c2</color>
 
     <!--Palette for graphs-->
-    <color name="graph_1">#3b9ec2</color>
-    <color name="graph_2">#31a1a1</color>
-    <color name="graph_3">#3b78c2</color>
-    <color name="graph_4">#223ac9</color>
-    <color name="graph_5">#663bc2</color>
-    <color name="graph_6">#903bc2</color>
-    <color name="graph_7">#604c86</color>
+    <color name="graph_1">#C3F094</color>
+    <color name="graph_2">#8CB860</color>
+    <color name="graph_3">@color/c5</color>
+    <color name="graph_4">@color/c4</color>
+    <color name="graph_5">#FFC0B8</color>
+    <color name="graph_6">#FF8983</color>
+    <color name="graph_7">#F9F871</color>
+
+
+    <color name="c1">#3c4857</color>
+    <color name="c2">#714c6c</color>
+    <color name="c3">#e91e63</color>
+    <color name="c4">#ffa000</color>
+    <color name="c5">#00bfa5</color>
+    <color name="c5_darker">#03907D</color>
+    <color name="c5_transparent">#2700BFA5</color>
+    <color name="g1">#cdcdcd</color>
+    <color name="g2">#d8d8d8</color>
+    <color name="g3">#e6e6e6</color>
+    <color name="g4">#f5f5f5</color>
+
+    <color name="color_toolbar">#FFFFFF</color>
+    <color name="color_text_light">#FFFFFF</color>
+    <color name="color_tooltip">@color/c4</color>
+    <color name="color_main_bg">@color/g4</color>
+    <color name="color_icons">@color/c1</color>
 
 </resources>

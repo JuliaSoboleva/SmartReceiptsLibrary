@@ -25,7 +25,6 @@
         android:layout_alignTop="@+id/data_layout"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/card_thumbnail_margins"
-        android:tint="@color/text_secondary_color"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         tools:src="@drawable/ic_cloud_done_24dp"/>

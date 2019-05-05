@@ -46,8 +46,8 @@
                 android:layout_gravity="center"
                 android:drawablePadding="@dimen/padding_normal"
                 android:drawableStart="@drawable/ic_cloud_upload_24dp"
+                android:drawableTint="@color/color_text_light"
                 android:gravity="center_vertical"
-                android:textColor="@color/accent_text_primary"
                 android:text="@string/manual_backup_export"
                 android:textStyle="bold" />
         </FrameLayout>
@@ -68,8 +68,8 @@
                 android:layout_gravity="center"
                 android:drawablePadding="@dimen/padding_normal"
                 android:drawableStart="@drawable/ic_cloud_download_24dp"
+                android:drawableTint="@color/color_text_light"
                 android:gravity="center_vertical"
-                android:textColor="@color/accent_text_primary"
                 android:text="@string/manual_backup_import"
                 android:textStyle="bold" />
         </FrameLayout>
@@ -95,6 +95,7 @@
         android:layout_marginBottom="@dimen/margin_tiny"
         android:drawablePadding="@dimen/padding_normal"
         android:drawableStart="@android:drawable/stat_sys_warning"
+        android:drawableTint="@color/text_primary_color"
         android:gravity="center_vertical"
         android:text="@string/auto_backup_warning_none" />
 

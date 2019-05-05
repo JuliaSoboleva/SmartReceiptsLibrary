@@ -71,7 +71,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/receipt_input_price_wrapper"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/receipt_input_price_wrapper"
-                android:src="@drawable/ic_receipt_white_24dp"/>
+                android:src="@drawable/ic_receipt_24dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/receipt_input_price_wrapper"

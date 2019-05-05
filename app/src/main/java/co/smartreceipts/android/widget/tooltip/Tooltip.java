@@ -213,7 +213,7 @@ public class Tooltip extends RelativeLayout {
     }
 
     private void setInfoBackground() {
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.smart_receipts_colorAccent));
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.color_tooltip));
     }
 
     private void setViewStateError() {

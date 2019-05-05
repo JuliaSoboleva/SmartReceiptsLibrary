@@ -115,7 +115,7 @@
     <style name="Widget.SmartReceipts.TextView.Button">
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/text_primary_color</item>
+        <item name="android:textColor">@color/color_text_light</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
@@ -150,9 +150,9 @@
     </style>
 
     <style name="Widget.SmartReceipts.FloatingActionButton">
-        <item name="fab_colorNormal">@color/smart_receipts_colorPrimaryDark</item>
-        <item name="fab_colorPressed">@color/smart_receipts_colorPrimaryDark_pressed</item>
-        <item name="fab_colorRipple">@color/smart_receipts_ripple_dark</item>
+        <item name="fab_colorNormal">@color/c5</item>
+        <item name="fab_colorPressed">@color/c5_darker</item>
+        <item name="fab_colorRipple">@color/c5_transparent</item>
         <item name="fab_size">normal</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -161,12 +161,14 @@
         <item name="android:layout_marginRight">@dimen/fab_margins</item>
         <item name="android:layout_marginBottom">@dimen/fab_margins</item>
         <item name="android:layout_marginLeft">@dimen/fab_margins</item>
+        <item name="menu_labels_textColor">@color/text_primary_color</item>
+        <item name="menu_labels_colorNormal">@color/color_main_bg</item>
     </style>
 
     <style name="Widget.SmartReceipts.FloatingActionButton.Menu">
-        <item name="menu_colorNormal">@color/smart_receipts_colorPrimaryDark</item>
-        <item name="menu_colorPressed">@color/smart_receipts_colorPrimaryDark_pressed</item>
-        <item name="menu_colorRipple">@color/smart_receipts_ripple_dark</item>
+        <item name="menu_colorNormal">@color/c5</item>
+        <item name="menu_colorPressed">@color/c5_darker</item>
+        <item name="menu_colorRipple">@color/c5_transparent</item>
         <item name="menu_animationDelayPerItem">50</item>
     </style>
 
@@ -175,8 +177,12 @@
         <item name="android:layout_height">@dimen/guide_image_size</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
-        <item name="android:tint">@color/card_image_tint</item>
+        <item name="android:tint">@color/color_icons</item>
         <item name="android:layout_marginRight">@dimen/guide_image_margin</item>
+    </style>
+
+    <style name="Widget.SmartReceipts.CheckBox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/text_primary_color</item>
     </style>
 
 </resources>

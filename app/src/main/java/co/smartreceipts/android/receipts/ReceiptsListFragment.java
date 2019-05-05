@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,9 +66,7 @@ import co.smartreceipts.android.persistence.database.controllers.impl.StubTableE
 import co.smartreceipts.android.persistence.database.controllers.impl.TripTableController;
 import co.smartreceipts.android.persistence.database.operations.DatabaseOperationMetadata;
 import co.smartreceipts.android.persistence.database.operations.OperationFamilyType;
-import co.smartreceipts.android.persistence.database.tables.ordering.OrderingPreferencesManager;
 import co.smartreceipts.android.receipts.attacher.ReceiptAttachmentDialogFragment;
-import co.smartreceipts.android.receipts.attacher.ReceiptAttachmentManager;
 import co.smartreceipts.android.receipts.attacher.ReceiptRemoveAttachmentDialogFragment;
 import co.smartreceipts.android.receipts.creator.ReceiptCreateActionPresenter;
 import co.smartreceipts.android.receipts.creator.ReceiptCreateActionView;
@@ -220,7 +217,7 @@ public class ReceiptsListFragment extends ReceiptsFragment implements ReceiptTab
         this.alerter = Alerter.create(getActivity())
                 .setTitle(R.string.ocr_status_title)
                 .setBackgroundColor(R.color.smart_receipts_colorAccent)
-                .setIcon(R.drawable.ic_receipt_white_24dp);
+                .setIcon(R.drawable.ic_receipt_24dp);
 
         // And inflate the root view
         return inflater.inflate(R.layout.receipt_fragment_layout, container, false);
