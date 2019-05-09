@@ -23,10 +23,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_tiny"
-        android:layout_marginEnd="@dimen/margin_normal"
         android:layout_marginStart="@dimen/margin_normal"
         android:layout_marginTop="@dimen/margin_tiny"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_tiny"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -36,16 +36,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_normal"
-            android:paddingEnd="@dimen/padding_large"
-            android:paddingStart="@dimen/padding_large">
+            android:paddingStart="@dimen/padding_large"
+            android:paddingEnd="@dimen/padding_large">
 
             <TextView
                 style="@style/Widget.SmartReceipts.TextView.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="@dimen/padding_normal"
                 android:drawableStart="@drawable/ic_cloud_upload_24dp"
+                android:drawablePadding="@dimen/padding_normal"
                 android:drawableTint="@color/color_text_light"
                 android:gravity="center_vertical"
                 android:text="@string/manual_backup_export"
@@ -58,16 +58,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
-            android:paddingEnd="@dimen/padding_large"
-            android:paddingStart="@dimen/padding_large">
+            android:paddingStart="@dimen/padding_large"
+            android:paddingEnd="@dimen/padding_large">
 
             <TextView
                 style="@style/Widget.SmartReceipts.TextView.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="@dimen/padding_normal"
                 android:drawableStart="@drawable/ic_cloud_download_24dp"
+                android:drawablePadding="@dimen/padding_normal"
                 android:drawableTint="@color/color_text_light"
                 android:gravity="center_vertical"
                 android:text="@string/manual_backup_import"
@@ -77,15 +77,17 @@
 
     <View
         style="@style/Widget.View.Divider.Horizontal"
+        android:layout_marginTop="@dimen/margin_normal"
         android:layout_marginBottom="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/margin_normal" />
+        android:visibility="gone" />
 
     <TextView
         style="@style/Widget.SmartReceipts.TextView.Body2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_tiny"
-        android:text="@string/auto_backup_title" />
+        android:text="@string/auto_backup_title"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/auto_backup_warning"
@@ -93,28 +95,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_tiny"
-        android:drawablePadding="@dimen/padding_normal"
         android:drawableStart="@android:drawable/stat_sys_warning"
+        android:drawablePadding="@dimen/padding_normal"
         android:drawableTint="@color/text_primary_color"
         android:gravity="center_vertical"
-        android:text="@string/auto_backup_warning_none" />
+        android:text="@string/auto_backup_warning_none"
+        android:visibility="gone" />
 
     <CheckBox
         android:id="@+id/auto_backup_wifi_only"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_tiny"
-        android:paddingEnd="@dimen/padding_normal"
         android:paddingStart="@dimen/padding_normal"
+        android:paddingEnd="@dimen/padding_normal"
         android:text="@string/auto_backup_wifi_only"
-        android:textAppearance="@style/Widget.SmartReceipts.TextView.Body1" />
+        android:textAppearance="@style/Widget.SmartReceipts.TextView.Body1"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/automatic_backup_config_button"
         style="@style/Widget.SmartReceipts.Button.Tertiary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/automatic_backup_config_button_image"
