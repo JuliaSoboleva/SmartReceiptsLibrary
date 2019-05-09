@@ -39,7 +39,8 @@
             android:paddingEnd="@dimen/generate_report_item_separation"
             android:paddingStart="@dimen/generate_report_item_separation"
             android:text="@string/DIALOG_EMAIL_CHECKBOX_PDF_IMAGES"
-            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title" />
+            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title"
+            android:visibility="gone"/>
 
         <CheckBox
             android:id="@+id/dialog_email_checkbox_csv"
@@ -49,7 +50,8 @@
             android:paddingEnd="@dimen/generate_report_item_separation"
             android:paddingStart="@dimen/generate_report_item_separation"
             android:text="@string/DIALOG_EMAIL_CHECKBOX_CSV"
-            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title" />
+            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title"
+            android:visibility="gone"/>
 
         <CheckBox
             android:id="@+id/dialog_email_checkbox_zip"
@@ -59,7 +61,8 @@
             android:paddingStart="@dimen/generate_report_item_separation"
             android:layout_marginBottom="@dimen/generate_report_item_separation"
             android:text="@string/DIALOG_EMAIL_CHECKBOX_ZIP"
-            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title" />
+            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title"
+            android:visibility="gone"/>
 
         <CheckBox
             android:id="@+id/dialog_email_checkbox_zip_with_metadata"
@@ -69,7 +72,8 @@
             android:paddingStart="@dimen/generate_report_item_separation"
             android:layout_marginBottom="@dimen/generate_report_item_separation"
             android:text="@string/DIALOG_EMAIL_CHECKBOX_ZIP_WITH_METADATA"
-            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title" />
+            android:textAppearance="@style/Widget.SmartReceipts.TextView.Title"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <com.github.clans.fab.FloatingActionButton
