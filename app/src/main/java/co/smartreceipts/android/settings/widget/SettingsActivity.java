@@ -10,6 +10,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v4.app.TaskStackBuilder;
@@ -17,7 +18,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -39,13 +39,11 @@ import co.smartreceipts.android.analytics.Analytics;
 import co.smartreceipts.android.analytics.events.DataPoint;
 import co.smartreceipts.android.analytics.events.DefaultDataPointEvent;
 import co.smartreceipts.android.analytics.events.Events;
-import co.smartreceipts.android.currency.widget.CurrencyCodeSupplier;
 import co.smartreceipts.android.currency.widget.CurrencyListEditorPresenter;
 import co.smartreceipts.android.currency.widget.CurrencyListEditorView;
 import co.smartreceipts.android.date.DateFormatter;
 import co.smartreceipts.android.date.DisplayableDate;
 import co.smartreceipts.android.persistence.DatabaseHelper;
-import co.smartreceipts.android.persistence.PersistenceManager;
 import co.smartreceipts.android.purchases.PurchaseEventsListener;
 import co.smartreceipts.android.purchases.PurchaseManager;
 import co.smartreceipts.android.purchases.model.InAppPurchase;
@@ -63,6 +61,8 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 import wb.android.flex.Flex;
 import wb.android.preferences.PlusCheckBoxPreference;
 import wb.android.preferences.SummaryEditTextPreference;
@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
 
     @Inject
     DatabaseHelper databaseHelper;
-    
+
     @Inject
     UserPreferenceManager userPreferenceManager;
 
@@ -113,6 +113,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
      * fragment manager entries
      */
     private boolean isFragmentHeaderShowing = false;
+
+    // YOOZ
+    private List<Preference> generalPrefs, receiptsPrefs, outputPrefs, distancePrefs, aboutPrefs;
+    private Preference emailPref, cameraPref, plusPref, supportPref;
+    private final String YOOZ_HIDDEN_SETTINGS = "Yooz hidden settings";
+    private final int YOOZ_OPEN_EXTRA_SETTINGS_TAPS = 10;
+    private final Subject<Boolean> extraSettingsCallSubject = PublishSubject.create();
 
     @Override
     @SuppressWarnings("deprecation")
@@ -164,6 +171,150 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
                 }
             }, 10);
         }
+
+        hideSomeSettingsForYooz();
+
+        extraSettingsCallSubject
+                .buffer(YOOZ_OPEN_EXTRA_SETTINGS_TAPS)
+                .doOnNext(booleans -> {
+                    if (getPreferenceManager().getSharedPreferences().getBoolean(YOOZ_HIDDEN_SETTINGS, true)) {
+                        showHiddenSettingsForYooz();
+                        Toast.makeText(SettingsActivity.this, "Hidden extra settings are opened", Toast.LENGTH_SHORT).show();
+                    } else {
+                        hideSomeSettingsForYooz();
+                        Toast.makeText(SettingsActivity.this, "Extra settings are hided", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .subscribe();
+    }
+
+    private void hideSomeSettingsForYooz() {
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+
+        // General
+        PreferenceCategory generalPreferences = (PreferenceCategory) findPreference(R.string.pref_general_header_key);
+        generalPrefs = new ArrayList<>();
+        generalPrefs.add(findPreference(R.string.pref_general_default_date_separator_key));
+        generalPrefs.add(findPreference(R.string.pref_general_date_format_key));
+        generalPrefs.add(findPreference(R.string.pref_general_track_cost_center_key));
+        for (Preference pref : generalPrefs) {
+            generalPreferences.removePreference(pref);
+        }
+
+        // Receipts
+        PreferenceCategory receiptsPreferences = (PreferenceCategory) findPreference(R.string.pref_receipt_header_key);
+        receiptsPrefs = new ArrayList<>();
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_reimbursable_only_key));
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_reimbursable_default_key));
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_default_to_report_start_date_key));
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_show_id_key));
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_minimum_receipts_price_key));
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_use_payment_methods_key));
+        receiptsPrefs.add(findPreference(R.string.pref_receipt_payment_methods_key));
+        for (Preference pref : receiptsPrefs) {
+            receiptsPreferences.removePreference(pref);
+        }
+
+        // Output
+        PreferenceCategory outputPreferences = (PreferenceCategory) findPreference(R.string.pref_output_header_key);
+        outputPrefs = new ArrayList<>();
+        outputPrefs.add(findPreference(R.string.pref_output_custom_csv_key));
+        outputPrefs.add(findPreference(R.string.pref_output_custom_pdf_key));
+        outputPrefs.add(findPreference(R.string.pref_output_receipts_landscape_key));
+        outputPrefs.add(findPreference(R.string.pref_output_pdf_page_size_key));
+        outputPrefs.add(findPreference(R.string.pref_output_preferred_language_key));
+        for (Preference pref : outputPrefs) {
+            outputPreferences.removePreference(pref);
+        }
+
+        // Email
+        PreferenceCategory emailPreferences = (PreferenceCategory) findPreference(R.string.pref_email_header_key);
+        emailPref = findPreference(R.string.pref_email_default_email_subject_key);
+        emailPreferences.removePreference(emailPref);
+
+        // Camera
+        cameraPref = findPreference(R.string.pref_camera_header_key);
+        preferenceScreen.removePreference(cameraPref);
+
+        // Distance
+        PreferenceCategory distancePreferences = (PreferenceCategory) findPreference(R.string.pref_distance_header_key);
+        distancePrefs = new ArrayList<>();
+        distancePrefs.add(findPreference(R.string.pref_distance_include_price_in_report_key));
+        distancePrefs.add(findPreference(R.string.pref_distance_print_table_key));
+        distancePrefs.add(findPreference(R.string.pref_distance_print_daily_key));
+        distancePrefs.add(findPreference(R.string.pref_distance_as_price_key));
+        for (Preference pref : distancePrefs) {
+            distancePreferences.removePreference(pref);
+        }
+
+        // Plus
+        plusPref = findPreference(R.string.pref_pro_header_key);
+        preferenceScreen.removePreference(plusPref);
+
+        // Support
+        supportPref = findPreference(R.string.pref_help_header_key);
+        preferenceScreen.removePreference(supportPref);
+
+        // About
+        PreferenceCategory aboutPreferences = (PreferenceCategory) findPreference(R.string.pref_about_header_key);
+        aboutPrefs = new ArrayList<>();
+        aboutPrefs.add(findPreference(R.string.pref_about_about_key));
+        aboutPrefs.add(findPreference(R.string.pref_about_terms_key));
+        for (Preference pref : aboutPrefs) {
+            aboutPreferences.removePreference(pref);
+        }
+
+        getPreferenceManager().getSharedPreferences().edit().putBoolean(YOOZ_HIDDEN_SETTINGS, true).apply();
+
+    }
+
+    private void showHiddenSettingsForYooz() {
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+
+        // General
+        PreferenceCategory generalPreferences = (PreferenceCategory) findPreference(R.string.pref_general_header_key);
+        for (Preference pref : generalPrefs) {
+            generalPreferences.addPreference(pref);
+        }
+
+        // Receipts
+        PreferenceCategory receiptsPreferences = (PreferenceCategory) findPreference(R.string.pref_receipt_header_key);
+        for (Preference pref : receiptsPrefs) {
+            receiptsPreferences.addPreference(pref);
+        }
+
+        // Output
+        PreferenceCategory outputPreferences = (PreferenceCategory) findPreference(R.string.pref_output_header_key);
+        for (Preference pref : outputPrefs) {
+            outputPreferences.addPreference(pref);
+        }
+
+        // Email
+        PreferenceCategory emailPreferences = (PreferenceCategory) findPreference(R.string.pref_email_header_key);
+        emailPreferences.addPreference(emailPref);
+
+        // Camera
+        preferenceScreen.addPreference(cameraPref);
+
+        // Distance
+        PreferenceCategory distancePreferences = (PreferenceCategory) findPreference(R.string.pref_distance_header_key);
+        for (Preference pref : distancePrefs) {
+            distancePreferences.addPreference(pref);
+        }
+
+        // Plus
+        preferenceScreen.addPreference(plusPref);
+
+        // Support
+        preferenceScreen.addPreference(supportPref);
+
+        // About
+        PreferenceCategory aboutPreferences = (PreferenceCategory) findPreference(R.string.pref_about_header_key);
+        for (Preference pref : aboutPrefs) {
+            aboutPreferences.addPreference(pref);
+        }
+
+        getPreferenceManager().getSharedPreferences().edit().putBoolean(YOOZ_HIDDEN_SETTINGS, false).apply();
     }
 
 
@@ -413,6 +564,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
         // Set up Version Summary
         Preference versionPreference = universal.findPreference(R.string.pref_about_version_key);
         versionPreference.setSummary(getAppVersion());
+
+        versionPreference.setOnPreferenceClickListener(preference -> {
+            extraSettingsCallSubject.onNext(getPreferenceManager().getSharedPreferences().getBoolean(YOOZ_HIDDEN_SETTINGS, true));
+            return false;
+        });
     }
 
     public void configurePreferencesPrivacy(UniversalPreferences universal) {

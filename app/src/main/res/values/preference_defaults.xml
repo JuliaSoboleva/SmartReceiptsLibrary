@@ -3,7 +3,7 @@
     <!-- ============= Preference General ================= -->
     <integer name="pref_general_trip_duration_defaultValue">3</integer>
     <string name="pref_general_default_currency_defaultValue" />
-    <string name="pref_general_default_date_separator_defaultValue" />
+    <string name="pref_general_default_date_separator_defaultValue">/</string>
     <string name="pref_general_date_format_defaultValue">@string/pref_general_date_format_default_entryValue</string>
     <bool name="pref_general_track_cost_center_defaultValue">false</bool>
 
@@ -25,8 +25,8 @@
 
     <!-- ============= Preference Output ================= -->
     <string name="pref_output_username_defaultValue" />
-    <bool name="pref_output_print_receipt_id_by_photo_defaultValue">false</bool>
-    <bool name="pref_output_print_receipt_comment_by_photo_defaultValue">false</bool>
+    <bool name="pref_output_print_receipt_id_by_photo_defaultValue">true</bool>
+    <bool name="pref_output_print_receipt_comment_by_photo_defaultValue">true</bool>
     <bool name="pref_output_receipts_landscape_defaultValue">false</bool>
     <string name="pref_output_pdf_page_size_defaultValue" translatable="false">@string/pref_output_pdf_page_size_a4_entryValue</string>
     <string name="pref_output_preferred_language_defaultValue">@string/language_en_entry</string>
@@ -35,10 +35,10 @@
     <string name="pref_email_default_email_to_defaultValue" />
     <string name="pref_email_default_email_cc_defaultValue" />
     <string name="pref_email_default_email_bcc_defaultValue" />
-    <string name="EMAIL_DATA_SUBJECT">Smart Receipts - %REPORT_NAME%</string> <!-- Note: The item should be "pref_email_default_email_subject_defaultValue" but cannot for legacy flex reasons -->
+    <string name="EMAIL_DATA_SUBJECT"></string> <!-- Note: The item should be "pref_email_default_email_subject_defaultValue" but cannot for legacy flex reasons -->
 
     <!-- ============= Preference Camera ================= -->
-    <bool name="pref_camera_bw_defaultValue">false</bool>
+    <bool name="pref_camera_bw_defaultValue">true</bool>
     <bool name="pref_camera_rotate_defaultValue">true</bool>
 
     <!-- ============= Preference Layout ================= -->
@@ -47,16 +47,16 @@
 
     <!-- ============= Preference Distance ================= -->
     <item name="pref_distance_rate_defaultValue" format="float" type="dimen">0.0</item>
-    <bool name="pref_distance_include_price_in_report_defaultValue">false</bool>
+    <bool name="pref_distance_include_price_in_report_defaultValue">true</bool>
     <bool name="pref_distance_print_table_defaultValue">true</bool>
-    <bool name="pref_distance_print_daily_defaultValue">false</bool>
+    <bool name="pref_distance_print_daily_defaultValue">true</bool>
     <bool name="pref_distance_as_price_defaultValue">true</bool>
 
     <!-- ================= Preference Pro ================== -->
-    <string name="pref_pro_pdf_footer_defaultValue">Report Generated using Smart Receipts for Android</string>
-    <bool name="pref_pro_separate_by_category_defaultValue">false</bool>
-    <bool name="pref_pro_categorical_summation_defaultValue">false</bool>
-    <bool name="pref_pro_omit_default_table_defaultValue">false</bool>
+    <string name="pref_pro_pdf_footer_defaultValue"></string>
+    <bool name="pref_pro_separate_by_category_defaultValue">true</bool>
+    <bool name="pref_pro_categorical_summation_defaultValue">true</bool>
+    <bool name="pref_pro_omit_default_table_defaultValue">true</bool>
 
     <!-- ============== Preference Privacy ================= -->
     <bool name="pref_privacy_enable_analytics_defaultValue">true</bool>

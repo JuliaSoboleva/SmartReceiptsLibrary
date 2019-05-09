@@ -147,7 +147,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="pref_output_category_key"
+        android:key="@string/pref_output_header_key"
         android:title="@string/pref_output_header">
         <Preference
             android:key="@string/pref_output_custom_csv_key"

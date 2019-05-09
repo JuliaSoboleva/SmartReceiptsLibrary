@@ -4,7 +4,7 @@
     <bool name="config_is_the_graphs_screen_enabled">true</bool>
     <bool name="config_is_the_distance_screen_enabled">true</bool>
     <bool name="config_is_the_text_only_receipt_feature_enabled">true</bool>
-    <bool name="config_is_ocr_enabled">true</bool>
+    <bool name="config_is_ocr_enabled">false</bool>
 
     <!-- Incubating Features -->
     <bool name="config_is_organization_syncing_enabled">false</bool>
