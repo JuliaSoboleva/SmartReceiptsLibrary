@@ -39,7 +39,7 @@
 
     <PreferenceCategory
         android:key="@string/pref_general_header_key"
-        android:title="@string/pref_general_header" >
+        android:title="@string/pref_general_header">
         <co.smartreceipts.android.settings.widget.DefaultDurationEditTextPreference
             android:defaultValue="@integer/pref_general_trip_duration_defaultValue"
             android:inputType="number"
@@ -50,13 +50,13 @@
             android:key="@string/pref_general_default_currency_key"
             android:title="@string/pref_general_default_currency_title" />
         <wb.android.preferences.SummaryListPreference
+            android:defaultValue="@string/pref_general_default_date_separator_defaultValue"
             android:key="@string/pref_general_default_date_separator_key"
-            android:title="@string/pref_general_default_date_separator_title"
-            android:defaultValue="@string/pref_general_default_date_separator_defaultValue" />
+            android:title="@string/pref_general_default_date_separator_title" />
         <wb.android.preferences.SummaryListPreference
+            android:defaultValue="@string/pref_general_date_format_defaultValue"
             android:key="@string/pref_general_date_format_key"
-            android:title="@string/pref_general_date_format_title"
-            android:defaultValue="@string/pref_general_date_format_defaultValue" />
+            android:title="@string/pref_general_date_format_title" />
         <CheckBoxPreference
             android:defaultValue="@bool/pref_general_track_cost_center_defaultValue"
             android:key="@string/pref_general_track_cost_center_key"
@@ -67,7 +67,7 @@
 
     <PreferenceCategory
         android:key="@string/pref_receipt_header_key"
-        android:title="@string/pref_receipt_header" >
+        android:title="@string/pref_receipt_header">
         <Preference
             android:key="@string/pref_receipt_customize_categories_key"
             android:summary="@string/pref_receipt_customize_categories_summary"
@@ -167,11 +167,6 @@
             android:entryValues="@array/pref_output_pdf_page_size_value_entryValues"
             android:key="@string/pref_output_pdf_page_size_key"
             android:title="@string/pref_output_pdf_page_size_title" />
-        <wb.android.preferences.EmptyValueSummaryEditTextPreference
-            android:defaultValue="@string/pref_output_username_defaultValue"
-            android:key="@string/pref_output_username_key"
-            android:title="@string/pref_output_username_title"
-            wb:emptyValue="@string/pref_output_username_emptyValue" />
         <CheckBoxPreference
             android:defaultValue="@bool/pref_output_print_receipt_id_by_photo_defaultValue"
             android:key="@string/pref_output_print_receipt_id_by_photo_key"
@@ -317,6 +312,22 @@
             android:key="@string/pref_privacy_enable_ad_personalization_key"
             android:summary="@string/pref_privacy_enable_ad_personalization_summary"
             android:title="@string/pref_privacy_enable_ad_personalization_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/pref_privacy_header_key"
+        android:title="@string/pref_user_header">
+        <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:key="@string/pref_user_name_key"
+            android:title="@string/pref_user_name_title" />
+        <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:key="@string/pref_user_email_key"
+            android:title="@string/pref_user_email_title" />
+        <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:defaultValue="@string/pref_output_username_defaultValue"
+            android:key="@string/pref_output_user_id_key"
+            android:title="@string/pref_output_user_id_title"
+            wb:emptyValue="@string/pref_output_user_id_emptyValue" />
     </PreferenceCategory>
 
     <PreferenceCategory

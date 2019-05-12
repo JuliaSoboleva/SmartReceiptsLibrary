@@ -22,11 +22,6 @@
             android:entryValues="@array/pref_output_pdf_page_size_value_entryValues"
             android:key="@string/pref_output_pdf_page_size_key"
             android:title="@string/pref_output_pdf_page_size_title" />
-        <wb.android.preferences.EmptyValueSummaryEditTextPreference
-            android:defaultValue="@string/pref_output_username_defaultValue"
-            android:key="@string/pref_output_username_key"
-            android:title="@string/pref_output_username_title"
-            wb:emptyValue="@string/pref_output_username_emptyValue" />
         <CheckBoxPreference
             android:defaultValue="@bool/pref_output_print_receipt_id_by_photo_defaultValue"
             android:key="@string/pref_output_print_receipt_id_by_photo_key"

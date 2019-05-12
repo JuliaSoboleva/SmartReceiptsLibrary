@@ -5,22 +5,22 @@ import java.util.List;
 
 import co.smartreceipts.android.R;
 
-public class PreferenceHeaderProFragment extends
-        AbstractPreferenceHeaderFragment {
+public class PreferenceHeaderUserFragment
+        extends AbstractPreferenceHeaderFragment {
 
     @Override
     public int getPreferencesResourceId() {
-        return R.xml.preferences_pro;
+        return R.xml.preferences_user;
     }
 
     @Override
     public void configurePreferences() {
-        mSettingsActivity.configurePlusPreferences(this);
+        /* no-op */
     }
 
     @Override
     protected int getHeaderKey() {
-        return R.string.pref_pro_header_key;
+        return R.string.pref_user_header_key;
     }
 
     @Override

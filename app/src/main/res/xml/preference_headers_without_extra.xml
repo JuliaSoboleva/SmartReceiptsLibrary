@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!--Same as preference_headers but without "Camera", "Plus", "Support"-->
 	<header
 	    android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderGeneralFragment"
 	    android:title="@string/pref_general_header">
-    </header>
-    <header
-        android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderProFragment"
-        android:title="@string/pref_pro_header">
     </header>
     <header
 	    android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderReceiptsFragment"
@@ -22,20 +18,12 @@
 	    android:title="@string/pref_email_header">
     </header>
     <header
-	    android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderCameraFragment"
-	    android:title="@string/pref_camera_header">
-    </header>
-    <header
 	    android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderLayoutFragment"
 	    android:title="@string/pref_layout_header">
     </header>
     <header
         android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderDistanceFragment"
         android:title="@string/pref_distance_header">
-    </header>
-    <header
-	    android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderHelpFragment"
-	    android:title="@string/pref_help_header">
     </header>
     <header
         android:fragment="co.smartreceipts.android.settings.widget.PreferenceHeaderPrivacyFragment"

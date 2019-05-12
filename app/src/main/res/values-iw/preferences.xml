@@ -13,6 +13,7 @@
     <string name="pref_help_header">תמיכה</string>
     <string name="pref_about_header">אודות</string>
     <string name="pref_privacy_header">פרטיות</string>
+    <string name="pref_user_header">משתמש</string>
 
     <!-- ============== Preference General ================= -->
     <string name="pref_general_trip_duration_title">אורך נסיעה ממוצע</string>
@@ -59,8 +60,8 @@
     <!-- ============= Preference Output ================= -->
     <string name="pref_output_custom_csv_title">התאמה אישית לדוח אקסל</string>
     <string name="pref_output_custom_pdf_title">התאמה אישית לדוח פידיאף</string>
-    <string name="pref_output_username_title">מזהה משתמש</string>
-    <string name="pref_output_username_emptyValue">משמש כשדה ייצוא בהתאמה אישית</string>
+    <string name="pref_output_user_id_title">מזהה משתמש</string>
+    <string name="pref_output_user_id_emptyValue">משמש כשדה ייצוא בהתאמה אישית</string>
     <string name="pref_output_print_receipt_id_by_photo_title">הראה מזהה לפי תמונה</string>
     <string name="pref_output_print_receipt_id_by_photo_summary">מראה את מזהה את קבלה במקום מספר אינדקס</string>
     <string name="pref_output_print_receipt_comment_by_photo_title">הראה הערה לקבלה לפי תמונה</string>
@@ -145,5 +146,9 @@
     <string name="pref_privacy_enable_ad_personalization_summary">Google AdMobעם </string>
 
     <!-- =============== Preference Misc =================== -->
+
+    <!-- =============== Preference User =================== -->
+    <string name="pref_user_name_title">שם משתמש</string>
+    <string name="pref_user_email_title">דוא"ל משתמש</string>
 
 </resources>

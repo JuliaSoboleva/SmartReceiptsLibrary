@@ -15,6 +15,7 @@
     <string name="pref_help_header">Assistance</string>
     <string name="pref_about_header">À propos</string>
     <string name="pref_privacy_header">Confidentialité</string>
+    <string name="pref_user_header">Usager</string>
 
 
     <!-- ============== Preference General ================= -->
@@ -84,8 +85,8 @@
     <string name="pref_output_custom_csv_title">Personnaliser le fichier de sortie CSV</string>
     <string name="pref_output_custom_pdf_title">Personnaliser le fichier de sortie PDF</string>
 
-    <string name="pref_output_username_title">Identifiant d\'utilisateur</string>
-    <string name="pref_output_username_emptyValue">Utilisé comme un champ de sortie personnalisé</string>
+    <string name="pref_output_user_id_title">Identifiant d\'utilisateur</string>
+    <string name="pref_output_user_id_emptyValue">Utilisé comme un champ de sortie personnalisé</string>
 
     <string name="pref_output_print_receipt_id_by_photo_title">Imprimer l\'ID par photo</string>
     <string name="pref_output_print_receipt_id_by_photo_summary">Affiche l\'ID du reçu à la place de l\'indice</string>
@@ -186,5 +187,9 @@
     <string name="pref_privacy_enable_ad_personalization_summary">Avec Google AdMob</string>
 
     <!-- =============== Preference Misc =================== -->
+
+    <!-- =============== Preference User =================== -->
+    <string name="pref_user_name_title">Nom d\'utilisateur</string>
+    <string name="pref_user_email_title">Email de l\'utilisateur</string>
 
 </resources>

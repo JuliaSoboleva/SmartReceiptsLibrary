@@ -16,6 +16,7 @@
     <string name="pref_help_header">Поддержка</string>
     <string name="pref_about_header">О программе</string>
     <string name="pref_privacy_header">Конфиденциальность</string>
+    <string name="pref_user_header">Пользователь</string>
 
 
     <!-- ============== Preference General ================= -->
@@ -85,8 +86,8 @@
     <string name="pref_output_custom_csv_title">Настройка таблиц для CSV</string>
     <string name="pref_output_custom_pdf_title">Настройка таблиц для PDF</string>
 
-    <string name="pref_output_username_title">ID пользователя</string>
-    <string name="pref_output_username_emptyValue">Используется в качестве произвольного поля</string>
+    <string name="pref_output_user_id_title">ID пользователя</string>
+    <string name="pref_output_user_id_emptyValue">Используется в качестве произвольного поля</string>
 
     <string name="pref_output_print_receipt_id_by_photo_title">Печать ID по фото</string>
     <string name="pref_output_print_receipt_id_by_photo_summary">Показывает ID чека вместо индекса</string>
@@ -181,5 +182,9 @@
     <string name="pref_about_privacy_policy_title">Политика конфиденциальности</string>
 
     <!-- =============== Preference Misc =================== -->
+
+    <!-- =============== Preference User =================== -->
+    <string name="pref_user_name_title">Имя пользователя</string>
+    <string name="pref_user_email_title">Email пользователя</string>
 
 </resources>

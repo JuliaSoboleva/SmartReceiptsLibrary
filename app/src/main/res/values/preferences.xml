@@ -25,6 +25,8 @@
     <string name="pref_about_header_key" translatable="false">pref_about_category_key</string>
     <string name="pref_privacy_header">Privacy</string>
     <string name="pref_privacy_header_key" translatable="false">pref_privacy_category_key</string>
+    <string name="pref_user_header">User</string>
+    <string name="pref_user_header_key" translatable="false">pref_user_category_key</string>
 
     <!-- ============== Preference General ================= -->
     <string name="pref_general_trip_duration_key" translatable="false">TripDuration</string>
@@ -107,9 +109,9 @@
     <string name="pref_output_custom_pdf_key" translatable="false">CustomizePDFOutput</string>
     <string name="pref_output_custom_pdf_title">Customize PDF Output</string>
 
-    <string name="pref_output_username_key" translatable="false">UserName</string>
-    <string name="pref_output_username_title">User ID</string>
-    <string name="pref_output_username_emptyValue">Used as a Custom Output Field</string>
+    <string name="pref_output_user_id_key" translatable="false">UserId</string>
+    <string name="pref_output_user_id_title">User ID</string>
+    <string name="pref_output_user_id_emptyValue">Used as a Custom Output Field</string>
 
     <string name="pref_output_print_receipt_id_by_photo_key" translatable="false">PrintByIDPhotoKey</string>
     <string name="pref_output_print_receipt_id_by_photo_title">Print ID By Photo</string>
@@ -244,6 +246,12 @@
     <string name="pref_privacy_enable_ad_personalization_key" translatable="false">EnableAdPersonalization</string>
     <string name="pref_privacy_enable_ad_personalization_title">Allow Ad Personalization</string>
     <string name="pref_privacy_enable_ad_personalization_summary">With Google AdMob</string>
+
+    <!-- =============== Preference User =================== -->
+    <string name="pref_user_name_key" translatable="false">UserName</string>
+    <string name="pref_user_name_title">User Name</string>
+    <string name="pref_user_email_key" translatable="false">UserEmail</string>
+    <string name="pref_user_email_title">User Email</string>
 
     <!-- =============== Preference Misc =================== -->
     <string name="pref_no_category_auto_backup_wifi_only_key" translatable="false">AutoBackupWifiOnly</string>

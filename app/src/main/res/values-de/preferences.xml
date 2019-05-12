@@ -15,6 +15,7 @@
     <string name="pref_help_header">Unterstützung</string>
     <string name="pref_about_header">Über</string>
     <string name="pref_privacy_header">Datenschutz</string>
+    <string name="pref_user_header">Nutzer</string>
 
 
     <!-- ============== Preference General ================= -->
@@ -84,8 +85,8 @@
     <string name="pref_output_custom_csv_title"> CSV-Ausgabe anpassen</string>
     <string name="pref_output_custom_pdf_title">PDF-Ausgabe anpassen</string>
 
-    <string name="pref_output_username_title">Benutzeridentifikation</string>
-    <string name="pref_output_username_emptyValue">Wird als Ausgabefeld definiert</string>
+    <string name="pref_output_user_id_title">Benutzeridentifikation</string>
+    <string name="pref_output_user_id_emptyValue">Wird als Ausgabefeld definiert</string>
 
     <string name="pref_output_print_receipt_id_by_photo_title">Beleg-ID zumh Foto</string>
     <string name="pref_output_print_receipt_id_by_photo_summary">Zeigt die Beleg-ID anstelle des Index</string>
@@ -185,5 +186,9 @@
     <string name="pref_privacy_enable_ad_personalization_summary">Mit Google AdMob</string>
 
     <!-- =============== Preference Misc =================== -->
+
+    <!-- =============== Preference User =================== -->
+    <string name="pref_user_name_title">Nutzername</string>
+    <string name="pref_user_email_title">Benutzer Email</string>
 
 </resources>

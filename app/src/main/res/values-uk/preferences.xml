@@ -16,6 +16,7 @@
     <string name="pref_help_header">Підтримка</string>
     <string name="pref_about_header">Про програму</string>
     <string name="pref_privacy_header">Конфіденційність</string>
+    <string name="pref_user_header">Користувач</string>
 
 
     <!-- ============== Preference General ================= -->
@@ -85,8 +86,8 @@
     <string name="pref_output_custom_csv_title">Налаштування таблиць для CSV</string>
     <string name="pref_output_custom_pdf_title">Налаштування таблиць для PDF</string>
 
-    <string name="pref_output_username_title">ID користувача</string>
-    <string name="pref_output_username_emptyValue">Використовується в якості довільного поля</string>
+    <string name="pref_output_user_id_title">ID користувача</string>
+    <string name="pref_output_user_id_emptyValue">Використовується в якості довільного поля</string>
 
     <string name="pref_output_print_receipt_id_by_photo_title">Друк ID по фото</string>
     <string name="pref_output_print_receipt_id_by_photo_summary">Показує ID чека замість індексу</string>
@@ -186,6 +187,10 @@
     <string name="pref_privacy_enable_ad_personalization_summary">С помощью Google AdMob</string>
 
     <!-- =============== Preference Misc =================== -->
+
+    <!-- =============== Preference User =================== -->
+    <string name="pref_user_name_title">Ім\'я користувача</string>
+    <string name="pref_user_email_title">Email користувача</string>
 
 </resources>
 
