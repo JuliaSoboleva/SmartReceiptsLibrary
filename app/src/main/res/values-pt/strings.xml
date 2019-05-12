@@ -391,6 +391,7 @@
     <string name="column_item_index">Índice do recibo</string>
     <string name="column_item_id">ID do recibo</string>
     <string name="column_item_payment_method">Forma de pagamento</string>
+    <string name="column_item_picture_number">Imagem #</string>
 
     <!-- ====================== Distance Report ======================== -->
     <string name="distance_location_field">Local</string>

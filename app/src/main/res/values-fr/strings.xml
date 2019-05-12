@@ -391,6 +391,7 @@
     <string name="column_item_index">Indice du reçu</string>
     <string name="column_item_id">ID du reçu</string>
     <string name="column_item_payment_method">Mode de paiement</string>
+    <string name="column_item_picture_number">Image #</string>
 
     <!-- ====================== Distance Report ======================== -->
     <string name="distance_location_field">Emplacement</string>

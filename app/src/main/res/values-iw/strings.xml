@@ -423,6 +423,7 @@
     <string name="column_item_index">אינדקס קבלה</string>
     <string name="column_item_id">מזהה קבלה</string>
     <string name="column_item_payment_method">אמצעי תשלום</string>
+    <string name="column_item_picture_number">תמונה #</string>
 
     <string name="receipt_dialog_action_delete">מחק קבלה</string>
     <string name="receipt_dialog_action_move_copy">העבר/העתק</string>

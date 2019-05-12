@@ -64,6 +64,7 @@ class ReceiptColumnDefinitions @Inject constructor(
         INDEX(25, R.string.column_item_index, R.string.original_column_item_index_en_us_name),
         ID(26, R.string.column_item_id, R.string.original_column_item_id_en_us_name),
         PAYMENT_METHOD(27, R.string.column_item_payment_method, R.string.original_column_item_payment_method_en_us_name),
+        PICTURE_NUMBER(28, R.string.column_item_picture_number, R.string.original_column_item_picture_number_en_us_name),
 
         EXTRA_EDITTEXT_1(100, R.string.RECEIPTMENU_FIELD_EXTRA_EDITTEXT_1),
         EXTRA_EDITTEXT_2(101, R.string.RECEIPTMENU_FIELD_EXTRA_EDITTEXT_2),
@@ -101,9 +102,13 @@ class ReceiptColumnDefinitions @Inject constructor(
             getColumnFromDefinition(DATE),
             getColumnFromDefinition(NAME),
             getColumnFromDefinition(PRICE),
+            getColumnFromDefinition(TAX),
             getColumnFromDefinition(CURRENCY),
+            getColumnFromDefinition(COMMENT),
             getColumnFromDefinition(CATEGORY_NAME),
-            getColumnFromDefinition(REIMBURSABLE)
+            getColumnFromDefinition(CATEGORY_CODE),
+            getColumnFromDefinition(PICTURED),
+            getColumnFromDefinition(PICTURE_NUMBER)
         )
 
     override fun getColumn(
@@ -194,6 +199,7 @@ class ReceiptColumnDefinitions @Inject constructor(
             REIMBURSABLE -> ReceiptIsReimbursableColumn(id, syncState, localizedContext, customOrderId, uuid)
             INDEX -> ReceiptIndexColumn(id, syncState, customOrderId, uuid)
             ID -> ReceiptIdColumn(id, syncState, customOrderId, uuid)
+            PICTURE_NUMBER -> ReceiptPictureNumberColumn(id, syncState, customOrderId, uuid)
             PAYMENT_METHOD -> ReceiptPaymentMethodColumn(id, syncState, customOrderId, uuid)
             EXTRA_EDITTEXT_1 -> ReceiptExtra1Column(id, syncState, customOrderId, uuid)
             EXTRA_EDITTEXT_2 -> ReceiptExtra2Column(id, syncState, customOrderId, uuid)

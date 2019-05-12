@@ -391,6 +391,7 @@
     <string name="column_item_index">Beleg-Index</string>
     <string name="column_item_id">Beleg ID</string>
     <string name="column_item_payment_method">Zahlungsmethode</string>
+    <string name="column_item_picture_number">Bild #</string>
 
     <!-- ====================== Distance Report ======================== -->
     <string name="distance_location_field">Ort</string>

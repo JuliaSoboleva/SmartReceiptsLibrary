@@ -358,7 +358,7 @@
 
     <!-- ================= RECEIPTMENU_FIELDS =================== -->
     <string name="RECEIPTMENU_FIELD_NAME">Name</string>
-    <string name="RECEIPTMENU_FIELD_PRICE">Price</string>
+    <string name="RECEIPTMENU_FIELD_PRICE">Amount</string>
     <string name="RECEIPTMENU_FIELD_TAX">Tax</string>
     <string name="RECEIPTMENU_FIELD_CURRENCY">Currency</string>
     <string name="RECEIPTMENU_FIELD_DATE">Date</string>
@@ -404,6 +404,7 @@
     <string name="column_item_index">Receipt Index</string>
     <string name="column_item_id">Receipt ID</string>
     <string name="column_item_payment_method">Payment Method</string>
+    <string name="column_item_picture_number">Picture #</string>
 
     <!-- ====================== Distance Report ======================== -->
     <string name="distance_location_field">Location</string>

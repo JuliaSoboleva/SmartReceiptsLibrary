@@ -393,6 +393,7 @@
     <string name="column_item_index">Індекс чека</string>
     <string name="column_item_id">ID чека</string>
     <string name="column_item_payment_method">Спосіб оплати</string>
+    <string name="column_item_picture_number">Зображення #</string>
 
     <!-- ====================== Distance Report ======================== -->
     <string name="distance_location_field">Місцезнаходження</string>
