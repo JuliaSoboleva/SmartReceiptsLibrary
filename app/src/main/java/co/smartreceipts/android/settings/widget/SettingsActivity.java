@@ -122,7 +122,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
     private final String YOOZ_EXTRA_SETTINGS_VISIBILITY = "Yooz extra settings visibility";
     private final int YOOZ_OPEN_EXTRA_SETTINGS_TAPS = 10;
     private final Subject<Click> extraSettingsCallSubject = PublishSubject.create();
-    private final Subject<Boolean> fragmentExtraSettingsVisibilitySubject = BehaviorSubject.createDefault(false);
+    private Subject<Boolean> fragmentExtraSettingsVisibilitySubject;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -132,6 +132,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
         super.onCreate(savedInstanceState);
         this.savedInstanceState = savedInstanceState;
         isUsingHeaders = getResources().getBoolean(R.bool.isTablet);
+
+        fragmentExtraSettingsVisibilitySubject = BehaviorSubject.createDefault(getExtraSettingsVisibilityPref());
 
         if (!isUsingHeaders) {
             // Load the legacy preferences headers
@@ -175,23 +177,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
             }, 10);
 
             initExtraPreferences();
-            hideSomeSettingsForYooz();
 
+            if (!getExtraSettingsVisibilityPref()) {
+                hideSomeSettingsForYooz();
+            }
+
+        } else if (!getExtraSettingsVisibilityPref()) {
+            invalidateHeaders();
         }
 
-        PreferenceManager.getDefaultSharedPreferences(this).edit()
-                .putBoolean(YOOZ_EXTRA_SETTINGS_VISIBILITY, false)
-                .apply();
-        invalidateHeaders();
 
         extraSettingsCallSubject
                 .buffer(YOOZ_OPEN_EXTRA_SETTINGS_TAPS)
                 .doOnNext(voids -> {
                     final boolean extraSettingsVisibilityState = !getExtraSettingsVisibilityPref();
 
-                    PreferenceManager.getDefaultSharedPreferences(this).edit()
-                            .putBoolean(YOOZ_EXTRA_SETTINGS_VISIBILITY, extraSettingsVisibilityState)
-                            .apply();
+                    setExtraSettingsVisibilityPref(extraSettingsVisibilityState);
 
                     Toast.makeText(SettingsActivity.this,
                             extraSettingsVisibilityState ? "Hidden extra settings are opened" : "Extra settings are hided",
@@ -612,6 +613,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements
 
     private boolean getExtraSettingsVisibilityPref() {
         return PreferenceManager.getDefaultSharedPreferences(this).getBoolean(YOOZ_EXTRA_SETTINGS_VISIBILITY, false);
+    }
+
+    private void setExtraSettingsVisibilityPref(boolean value) {
+        PreferenceManager.getDefaultSharedPreferences(this).edit()
+                .putBoolean(YOOZ_EXTRA_SETTINGS_VISIBILITY, value)
+                .apply();
     }
 
     public void configurePreferencesPrivacy(UniversalPreferences universal) {
