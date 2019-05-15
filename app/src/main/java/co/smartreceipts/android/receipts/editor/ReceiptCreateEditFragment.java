@@ -64,7 +64,6 @@ import co.smartreceipts.android.currency.widget.DefaultCurrencyListEditorView;
 import co.smartreceipts.android.date.DateEditText;
 import co.smartreceipts.android.date.DateFormatter;
 import co.smartreceipts.android.editor.Editor;
-import co.smartreceipts.android.fragments.ChildFragmentNavigationHandler;
 import co.smartreceipts.android.fragments.ReceiptInputCache;
 import co.smartreceipts.android.fragments.WBFragment;
 import co.smartreceipts.android.keyboard.decimal.SamsungDecimalInputPresenter;
@@ -78,7 +77,6 @@ import co.smartreceipts.android.model.gson.ExchangeRate;
 import co.smartreceipts.android.model.utils.ModelUtils;
 import co.smartreceipts.android.ocr.apis.model.OcrResponse;
 import co.smartreceipts.android.ocr.util.OcrResponseParser;
-import co.smartreceipts.android.ocr.widget.tooltip.ReceiptCreateEditFragmentTooltipFragment;
 import co.smartreceipts.android.persistence.DatabaseHelper;
 import co.smartreceipts.android.persistence.database.controllers.TableEventsListener;
 import co.smartreceipts.android.persistence.database.controllers.impl.CategoriesTableController;
@@ -320,11 +318,11 @@ public class ReceiptCreateEditFragment extends WBFragment implements Editor<Rece
         super.onViewCreated(view, savedInstanceState);
         this.unbinder = ButterKnife.bind(this, view);
 
-        if (savedInstanceState == null) {
-            if (isNewReceipt()) {
-                new ChildFragmentNavigationHandler(this).addChild(new ReceiptCreateEditFragmentTooltipFragment(), R.id.update_receipt_tooltip);
-            }
-        }
+//        if (savedInstanceState == null) {
+//            if (isNewReceipt()) {
+//                new ChildFragmentNavigationHandler(this).addChild(new ReceiptCreateEditFragmentTooltipFragment(), R.id.update_receipt_tooltip);
+//            }
+//        }
 
         // Apply white-label settings via our 'Flex' mechanism to update defaults
         flex.applyCustomSettings(nameBox);
