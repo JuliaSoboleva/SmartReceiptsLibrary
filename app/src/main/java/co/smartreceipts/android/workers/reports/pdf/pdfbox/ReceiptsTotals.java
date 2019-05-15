@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.smartreceipts.android.currency.PriceCurrency;
 import co.smartreceipts.android.model.Distance;
 import co.smartreceipts.android.model.Price;
-import co.smartreceipts.android.currency.PriceCurrency;
 import co.smartreceipts.android.model.Receipt;
 import co.smartreceipts.android.model.Trip;
 import co.smartreceipts.android.model.factory.PriceBuilderFactory;
@@ -30,6 +30,7 @@ public class ReceiptsTotals {
     private final Price distancePrice;
     private final Price reimbursableGrandTotalPrice;
     private final Price grandTotalPrice;
+    private final Price grandTotalWithOutTaxPrice;
 
     public ReceiptsTotals(@NonNull Trip trip, @NonNull List<Receipt> receipts, @NonNull List<Distance> distances, @NonNull UserPreferenceManager preferences) {
         Preconditions.checkNotNull(trip);
@@ -87,6 +88,16 @@ public class ReceiptsTotals {
         receiptsWithOutTaxPrice = new PriceBuilderFactory().setPrices(receiptsWithOutTaxTotal, tripCurrency).build();
         taxPrice = new PriceBuilderFactory().setPrices(taxesTotal, tripCurrency).build();
         distancePrice = new PriceBuilderFactory().setPrices(distanceTotal, tripCurrency).build();
+
+        List<Price> totalWithOutTax = new ArrayList<>();
+        totalWithOutTax.addAll(receiptsWithOutTaxTotal);
+        totalWithOutTax.addAll(distanceTotal);
+        grandTotalWithOutTaxPrice = new PriceBuilderFactory().setPrices(totalWithOutTax, tripCurrency).build();
+    }
+
+    @NonNull
+    public Price getGrandTotalWithOutTaxPrice() {
+        return grandTotalWithOutTaxPrice;
     }
 
     /**

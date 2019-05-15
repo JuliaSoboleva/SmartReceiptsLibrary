@@ -71,16 +71,17 @@
     <string name="report_info_generate">Generate</string>
 
     <!-- ============= Report Generation ============== -->
-    <string name="report_header_duration">From: %1$s To: %2$s</string>
+    <string name="report_header_duration">Expense report dates: %1$s - %2$s</string>
     <string name="report_header_receipts_total">Receipts Total: %s</string>
-    <string name="report_header_receipts_total_tax">Tax Total: %s</string>
-    <string name="report_header_receipts_total_no_tax">Receipts Total (Without Tax): %s</string>
+    <string name="report_header_receipts_total_tax">Tax amount: %s</string>
+    <string name="report_header_receipts_total_no_tax">Amount before tax: %s</string>
     <string name="report_header_receipts_total_with_tax">Receipts Total (With Tax): %s</string>
     <string name="report_header_distance_total">Distance Total: %s</string>
     <string name="report_header_receipts_total_reimbursable">Grand Total (Reimbursable): %s</string>
-    <string name="report_header_grand_total">Grand Total: %s</string>
+    <string name="report_header_grand_total_no_tax">@string/report_header_receipts_total_no_tax</string>
+    <string name="report_header_grand_total">Total amount: %s</string>
     <string name="report_header_cost_center">Cost Center: %s</string>
-    <string name="report_header_comment">Report Comment: %s</string>
+    <string name="report_header_comment">Expense Report Comment: %s</string>
     <string name="report_pdf_generation_error">There was an error generating the report</string>
     <string name="report_pdf_error_too_many_columns_title">Too many columns</string>
     <string name="report_pdf_error_too_many_columns_message">There is not enough space to fit all the columns in the report. Please try limiting the number of columns in Settings.</string>
