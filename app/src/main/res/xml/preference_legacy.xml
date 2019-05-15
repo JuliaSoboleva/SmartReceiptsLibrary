@@ -315,16 +315,18 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="@string/pref_privacy_header_key"
+        android:key="@string/pref_user_header_key"
         android:title="@string/pref_user_header">
         <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:defaultValue="@string/pref_output_user_name_defaultValue"
             android:key="@string/pref_user_name_key"
             android:title="@string/pref_user_name_title" />
         <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:defaultValue="@string/pref_output_user_email_defaultValue"
             android:key="@string/pref_user_email_key"
             android:title="@string/pref_user_email_title" />
         <wb.android.preferences.EmptyValueSummaryEditTextPreference
-            android:defaultValue="@string/pref_output_username_defaultValue"
+            android:defaultValue="@string/pref_output_user_id_defaultValue"
             android:key="@string/pref_output_user_id_key"
             android:title="@string/pref_output_user_id_title"
             wb:emptyValue="@string/pref_output_user_id_emptyValue" />

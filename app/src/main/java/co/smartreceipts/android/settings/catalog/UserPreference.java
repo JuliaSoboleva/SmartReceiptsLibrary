@@ -42,7 +42,9 @@ public final class UserPreference<T> {
     }
 
     public static final class ReportOutput {
-        public static final UserPreference<String> UserId = new UserPreference<>(String.class, R.string.pref_output_user_id_key, R.string.pref_output_username_defaultValue);
+        public static final UserPreference<String> UserId = new UserPreference<>(String.class, R.string.pref_output_user_id_key, R.string.pref_output_user_id_defaultValue);
+        public static final UserPreference<String> UserName = new UserPreference<>(String.class, R.string.pref_user_name_key, R.string.pref_output_user_name_defaultValue);
+        public static final UserPreference<String> UserEmail = new UserPreference<>(String.class, R.string.pref_user_email_key, R.string.pref_output_user_email_defaultValue);
         public static final UserPreference<Boolean> PrintUserIdByPdfPhoto = new UserPreference<>(Boolean.class, R.string.pref_output_print_receipt_id_by_photo_key, R.bool.pref_output_print_receipt_id_by_photo_defaultValue);
         public static final UserPreference<Boolean> PrintReceiptCommentByPdfPhoto = new UserPreference<>(Boolean.class, R.string.pref_output_print_receipt_comment_by_photo_key, R.bool.pref_output_print_receipt_comment_by_photo_defaultValue);
         public static final UserPreference<Boolean> PrintReceiptsTableInLandscape = new UserPreference<>(Boolean.class, R.string.pref_output_receipts_landscape_key, R.bool.pref_output_receipts_landscape_defaultValue);
