@@ -36,7 +36,7 @@ public class DistanceToReceiptsConverter implements ModelConverter<Distance, Rec
      * @param dateFormatter - the {@link DateFormatter} for the user's preferred date settings
      */
     public DistanceToReceiptsConverter(@NonNull Context context, @NonNull DateFormatter dateFormatter) {
-        this.context = context.getApplicationContext();
+        this.context = Preconditions.checkNotNull(context);
         this.dateFormatter = Preconditions.checkNotNull(dateFormatter);
     }
 
