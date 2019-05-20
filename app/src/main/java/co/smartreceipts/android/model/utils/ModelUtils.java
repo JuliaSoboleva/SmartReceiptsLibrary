@@ -159,6 +159,7 @@ public class ModelUtils {
         final StringBuilder stringBuilder = new StringBuilder();
         if (currency != null) {
             stringBuilder.append(currency.getCurrencyCode());
+            stringBuilder.append(" ");
         }
         stringBuilder.append(getDecimalFormattedValue(decimal, decimalPrecision));
         return stringBuilder.toString();
