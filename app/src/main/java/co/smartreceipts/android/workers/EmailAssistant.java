@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -90,6 +89,7 @@ public class EmailAssistant {
     private final Trip trip;
     private final PurchaseWallet purchaseWallet;
     private final DateFormatter dateFormatter;
+    private final UserPreferenceManager preferenceManager;
 
     private static Intent getEmailDeveloperIntent() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
@@ -127,7 +127,8 @@ public class EmailAssistant {
                           PersistenceManager persistenceManager,
                           Trip trip,
                           PurchaseWallet purchaseWallet,
-                          DateFormatter dateFormatter) {
+                          DateFormatter dateFormatter,
+                          UserPreferenceManager preferenceManager) {
         this.context = context;
         this.navigationHandler = navigationHandler;
         this.reportResourcesManager = reportResourcesManager;
@@ -135,6 +136,7 @@ public class EmailAssistant {
         this.trip = trip;
         this.purchaseWallet = purchaseWallet;
         this.dateFormatter = dateFormatter;
+        this.preferenceManager = preferenceManager;
     }
 
     public void emailTrip(@NonNull EnumSet<EmailOptions> options) {
@@ -306,7 +308,7 @@ public class EmailAssistant {
 
                     // Receipts table
                     if (mPreferenceManager.get(UserPreference.Distance.PrintDistanceAsDailyReceiptInReports)) {
-                        receiptsTableList.addAll(new DistanceToReceiptsConverter(context, dateFormatter).convert(distances));
+                        receiptsTableList.addAll(new DistanceToReceiptsConverter(context, dateFormatter, preferenceManager).convert(distances));
                         Collections.sort(receiptsTableList, new ReceiptDateComparator());
                     }
 
@@ -328,7 +330,7 @@ public class EmailAssistant {
 
                     // Categorical summation table
                     if (mPreferenceManager.get(UserPreference.PlusSubscription.CategoricalSummationInReports)) {
-                        final List<SumCategoryGroupingResult> sumCategoryGroupingResults = new GroupingController(mDB, context, mPreferenceManager)
+                        final List<SumCategoryGroupingResult> sumCategoryGroupingResults = new GroupingController(mDB, context, mPreferenceManager, dateFormatter)
                                 .getSummationByCategory(trip)
                                 .toList()
                                 .blockingGet();
@@ -350,7 +352,7 @@ public class EmailAssistant {
 
                     // Separated tables for each category
                     if (mPreferenceManager.get(UserPreference.PlusSubscription.SeparateByCategoryInReports)) {
-                        List<CategoryGroupingResult> groupingResults = new GroupingController(mDB, context, mPreferenceManager)
+                        List<CategoryGroupingResult> groupingResults = new GroupingController(mDB, context, mPreferenceManager, dateFormatter)
                                 .getReceiptsGroupedByCategory(trip)
                                 .toList()
                                 .blockingGet();
@@ -581,12 +583,9 @@ public class EmailAssistant {
                                     mPreferenceManager.get(UserPreference.ReportOutput.PrintReceiptsTableInLandscape)
                                             ? context.getString(R.string.report_pdf_error_too_many_columns_message)
                                             : context.getString(R.string.report_pdf_error_too_many_columns_message_landscape))
-                            .setPositiveButton(R.string.report_pdf_error_go_to_settings, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                    navigationHandler.navigateToSettingsScrollToReportSection();
-                                }
+                            .setPositiveButton(R.string.report_pdf_error_go_to_settings, (dialog1, id) -> {
+                                dialog1.cancel();
+                                navigationHandler.navigateToSettingsScrollToReportSection();
                             })
                             .setNegativeButton(android.R.string.cancel, null)
                             .show();

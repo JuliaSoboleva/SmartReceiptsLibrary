@@ -528,5 +528,7 @@
     <string name="organization_update_success">הארגון עודכן בהצלחה</string>
     <string name="organization_update_error">משהו השתבש במהלך עדכון הארגון</string>
     <string name="organization_update">עדכן הגדרות ארגון</string>
+    <string name="report_details_title">פרטים</string>
+    <string name="report_summary_title">סיכום</string>
 
 </resources>

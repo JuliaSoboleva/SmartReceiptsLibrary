@@ -108,25 +108,33 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
         final GridRenderer gridRenderer = new GridRenderer(availableWidth, availableHeight);
         gridRenderer.addRows(writeHeader(trip, doc, totals));
 
-        if (!receipts.isEmpty() &&
-                (!purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) ||
-                        (purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) &&
-                                !preferenceManager.get(UserPreference.PlusSubscription.OmitDefaultTableInReports)))) {
+        // Summary == Categories table
+        if (purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) &&
+                preferenceManager.get(UserPreference.PlusSubscription.CategoricalSummationInReports)
+                && !categories.isEmpty()) {
             gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_NORMAL)));
-            gridRenderer.addRows(writeReceiptsTable(receipts, doc));
+            gridRenderer.addRow(constructTitleGridRowRenderer(doc, pdfBoxContext.getString(R.string.report_summary_title)));
+            gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
+            gridRenderer.addRows(writeCategoriesTable(categories, doc));
         }
 
+        // Distance Table
         if (preferenceManager.get(UserPreference.Distance.PrintDistanceTableInReports) && !distances.isEmpty()) {
             gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_NORMAL)));
             gridRenderer.addRows(writeDistancesTable(distances, doc));
         }
 
-        if (purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) &&
-                preferenceManager.get(UserPreference.PlusSubscription.CategoricalSummationInReports)
-                && !categories.isEmpty()) {
+        // Details table (receipts + distances)
+        if (!receipts.isEmpty() &&
+                (!purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) ||
+                        (purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) &&
+                                !preferenceManager.get(UserPreference.PlusSubscription.OmitDefaultTableInReports)))) {
             gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_NORMAL)));
-            gridRenderer.addRows(writeCategoriesTable(categories, doc));
+            gridRenderer.addRow(constructTitleGridRowRenderer(doc, pdfBoxContext.getString(R.string.report_details_title)));
+            gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
+            gridRenderer.addRows(writeReceiptsTable(receipts, doc));
         }
+
 
         if (purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus) &&
                 preferenceManager.get(UserPreference.PlusSubscription.SeparateByCategoryInReports)
@@ -135,19 +143,9 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
             for (CategoryGroupingResult groupingResult : groupingResults) {
                 gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_NORMAL)));
 
-                GridRowRenderer groupTitleRenderer = new GridRowRenderer(new TextRenderer(
-                        pdfBoxContext.getAndroidContext(),
-                        doc,
-                        groupingResult.getCategory().getName(),
-                        pdfBoxContext.getColorManager().getColor(PdfColorStyle.Outline),
-                        pdfBoxContext.getFontManager().getFont(PdfFontStyle.TableHeader)));
 
-                groupTitleRenderer.getRenderingFormatting().addFormatting(new Alignment(Alignment.Type.Start));
-
-                GridRowRenderer paddingRenderer = new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL));
-
-                gridRenderer.addRow(groupTitleRenderer);
-                gridRenderer.addRow(paddingRenderer);
+                gridRenderer.addRow(constructTitleGridRowRenderer(doc, groupingResult.getCategory().getName()));
+                gridRenderer.addRow(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
                 gridRenderer.addRows(writeSeparateCategoryTable(groupingResult.getReceipts(), doc));
             }
         }
@@ -248,11 +246,24 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
                 pdfBoxContext.getFontManager().getFont(fontStyle)));
     }
 
+    private GridRowRenderer constructTitleGridRowRenderer(@NonNull PDDocument doc, @NonNull String title) {
+        GridRowRenderer groupTitleRenderer = new GridRowRenderer(new TextRenderer(
+                pdfBoxContext.getAndroidContext(),
+                doc,
+                title,
+                pdfBoxContext.getColorManager().getColor(PdfColorStyle.Outline),
+                pdfBoxContext.getFontManager().getFont(PdfFontStyle.TableHeader)));
+
+        groupTitleRenderer.getRenderingFormatting().addFormatting(new Alignment(Alignment.Type.Start));
+
+        return groupTitleRenderer;
+    }
+
     private List<GridRowRenderer> writeReceiptsTable(@NonNull List<Receipt> receipts, @NonNull PDDocument pdDocument) throws IOException {
 
         final List<Receipt> receiptsTableList = new ArrayList<>(receipts);
         if (preferenceManager.get(UserPreference.Distance.PrintDistanceAsDailyReceiptInReports)) {
-            receiptsTableList.addAll(new DistanceToReceiptsConverter(pdfBoxContext.getAndroidContext(), pdfBoxContext.getDateFormatter()).convert(distances));
+            receiptsTableList.addAll(new DistanceToReceiptsConverter(pdfBoxContext.getAndroidContext(), pdfBoxContext.getDateFormatter(), preferenceManager).convert(distances));
             Collections.sort(receiptsTableList, new ReceiptDateComparator());
         }
 

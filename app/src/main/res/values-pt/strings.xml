@@ -508,5 +508,7 @@
     <string name="organization_update_success">Organização atualizada com sucesso</string>
     <string name="organization_update_error">Algo deu errado ao atualizar a organização</string>
     <string name="organization_update">Atualizar configurações da organização</string>
+    <string name="report_summary_title">Resumo</string>
+    <string name="report_details_title">Detalhes</string>
 
 </resources>

@@ -4,40 +4,48 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import com.google.common.base.Preconditions;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import co.smartreceipts.android.R;
 import co.smartreceipts.android.date.DateFormatter;
+import co.smartreceipts.android.di.scopes.ApplicationScope;
+import co.smartreceipts.android.model.Category;
 import co.smartreceipts.android.model.Distance;
 import co.smartreceipts.android.model.Receipt;
 import co.smartreceipts.android.model.factory.CategoryBuilderFactory;
 import co.smartreceipts.android.model.factory.PriceBuilderFactory;
 import co.smartreceipts.android.model.factory.ReceiptBuilderFactory;
+import co.smartreceipts.android.settings.UserPreferenceManager;
+import co.smartreceipts.android.settings.catalog.UserPreference;
 
 /**
  * An implementation of the {@link ModelConverter} contract, which
  * allows us to print {@link co.smartreceipts.android.model.Distance} values in a receipt table. Distances
  * will be summed up based of a given day.
  */
+@ApplicationScope
 public class DistanceToReceiptsConverter implements ModelConverter<Distance, Receipt> {
 
     private final Context context;
     private final DateFormatter dateFormatter;
+    private final UserPreferenceManager preferenceManager;
 
     /**
      * Default constructor for this class.
      *
-     * @param context - the current application {@link Context}
+     * @param context       - the current application {@link Context}
      * @param dateFormatter - the {@link DateFormatter} for the user's preferred date settings
      */
-    public DistanceToReceiptsConverter(@NonNull Context context, @NonNull DateFormatter dateFormatter) {
-        this.context = Preconditions.checkNotNull(context);
-        this.dateFormatter = Preconditions.checkNotNull(dateFormatter);
+    @Inject
+    public DistanceToReceiptsConverter(Context context, DateFormatter dateFormatter, UserPreferenceManager preferenceManager) {
+        this.context = context;
+        this.dateFormatter = dateFormatter;
+        this.preferenceManager = preferenceManager;
     }
 
     @Override
@@ -51,8 +59,7 @@ public class DistanceToReceiptsConverter implements ModelConverter<Distance, Rec
             final String formattedDate = dateFormatter.getFormattedDate(distance.getDisplayableDate());
             if (distancesPerDay.containsKey(formattedDate)) {
                 distancesPerDay.get(formattedDate).add(distance);
-            }
-            else {
+            } else {
                 final List<Distance> distanceList = new ArrayList<>();
                 distanceList.add(distance);
                 distancesPerDay.put(formattedDate, distanceList);
@@ -96,12 +103,18 @@ public class DistanceToReceiptsConverter implements ModelConverter<Distance, Rec
         if (!comments.isEmpty()) {
             factory.setComment(TextUtils.join("; ", comments));
         }
+
+        final Category distanceCategory = new CategoryBuilderFactory().
+                setName(preferenceManager.get(UserPreference.Distance.DistanceCategoryName))
+                .setCode(preferenceManager.get(UserPreference.Distance.DistanceCategoryCode))
+                .build();
+
         factory.setTrip(distance0.getTrip());
         factory.setDate(distance0.getDate());
         factory.setFile(null);
         factory.setIsReimbursable(true);
         factory.setTimeZone(distance0.getTimeZone());
-        factory.setCategory(new CategoryBuilderFactory().setName(context.getString(R.string.distance)).build());
+        factory.setCategory(distanceCategory);
         factory.setCurrency(distance0.getTrip().getTripCurrency());
         factory.setPrice(new PriceBuilderFactory().setPriceables(distancesThisDay, distance0.getTrip().getTripCurrency()).build());
 

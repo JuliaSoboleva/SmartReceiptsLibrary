@@ -529,4 +529,9 @@
     <string name="organization_update_error">Something went wrong while updating organization</string>
     <string name="organization_update">Update organization settings</string>
 
+
+
+    <string name="report_details_title">Details</string>
+    <string name="report_summary_title">Summary</string>
+
 </resources>

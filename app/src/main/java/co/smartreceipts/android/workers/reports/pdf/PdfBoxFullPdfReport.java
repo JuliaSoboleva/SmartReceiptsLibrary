@@ -35,7 +35,7 @@ public class PdfBoxFullPdfReport extends PdfBoxAbstractReport {
                                PurchaseWallet purchaseWallet,
                                DateFormatter dateFormatter) {
         super(reportResourcesManager, db, preferences, storageManager, dateFormatter);
-        this.groupingController = new GroupingController(db, reportResourcesManager.getLocalizedContext(), preferences);
+        this.groupingController = new GroupingController(db, reportResourcesManager.getLocalizedContext(), preferences, dateFormatter);
         this.purchaseWallet = purchaseWallet;
     }
 

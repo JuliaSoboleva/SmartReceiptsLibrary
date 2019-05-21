@@ -14,12 +14,16 @@ import javax.inject.Inject;
 
 import co.smartreceipts.android.R;
 import co.smartreceipts.android.currency.PriceCurrency;
+import co.smartreceipts.android.date.DateFormatter;
 import co.smartreceipts.android.di.scopes.ApplicationScope;
 import co.smartreceipts.android.graphs.entry.LabeledGraphEntry;
+import co.smartreceipts.android.model.Category;
 import co.smartreceipts.android.model.PaymentMethod;
 import co.smartreceipts.android.model.Price;
 import co.smartreceipts.android.model.Receipt;
 import co.smartreceipts.android.model.Trip;
+import co.smartreceipts.android.model.converters.DistanceToReceiptsConverter;
+import co.smartreceipts.android.model.factory.CategoryBuilderFactory;
 import co.smartreceipts.android.model.factory.PriceBuilderFactory;
 import co.smartreceipts.android.model.impl.ImmutableNetPriceImpl;
 import co.smartreceipts.android.persistence.DatabaseHelper;
@@ -40,12 +44,14 @@ public class GroupingController {
     private final DatabaseHelper databaseHelper;
     private final Context context;
     private final UserPreferenceManager preferenceManager;
+    private final DateFormatter dateFormatter;
 
     @Inject
-    public GroupingController(DatabaseHelper databaseHelper, Context context, UserPreferenceManager preferenceManager) {
+    public GroupingController(DatabaseHelper databaseHelper, Context context, UserPreferenceManager preferenceManager, DateFormatter dateFormatter) {
         this.databaseHelper = databaseHelper;
         this.context = context;
         this.preferenceManager = preferenceManager;
+        this.dateFormatter = dateFormatter;
     }
 
     public Observable<CategoryGroupingResult> getReceiptsGroupedByCategory(Trip trip) {
@@ -59,8 +65,12 @@ public class GroupingController {
                         .toObservable());
     }
 
+    private Observable<CategoryGroupingResult> getReceiptsGroupedByCategoryWithDistances(Trip trip) {
+        return Observable.concat(getReceiptsGroupedByCategory(trip), getDistancesGroupingResult(trip).toObservable());
+    }
+
     public Observable<SumCategoryGroupingResult> getSummationByCategory(Trip trip) {
-        return getReceiptsGroupedByCategory(trip)
+        return getReceiptsGroupedByCategoryWithDistances(trip)
                 .map(categoryGroupingResult -> {
                     List<Price> prices = new ArrayList<Price>();
                     List<Price> taxes = new ArrayList<Price>();
@@ -165,6 +175,24 @@ public class GroupingController {
                 .subscribeOn(Schedulers.io())
                 .toObservable()
                 .flatMapIterable(receipts -> receipts);
+    }
+
+    private Single<List<Receipt>> getDistancesConvertedToReceipts(Trip trip) {
+        return databaseHelper.getDistanceTable()
+                .get(trip)
+                .map(distances -> new DistanceToReceiptsConverter(context, dateFormatter, preferenceManager).convert(distances))
+                .subscribeOn(Schedulers.io());
+    }
+
+    private Single<CategoryGroupingResult> getDistancesGroupingResult(Trip trip) {
+        return getDistancesConvertedToReceipts(trip)
+                .map(receipts -> {
+                    final Category distanceCategory = new CategoryBuilderFactory()
+                            .setName(preferenceManager.get(UserPreference.Distance.DistanceCategoryName))
+                            .setCode(preferenceManager.get(UserPreference.Distance.DistanceCategoryCode))
+                            .build();
+                    return new CategoryGroupingResult(distanceCategory, receipts);
+                });
     }
 
     private Price getReceiptsPriceSum(List<Receipt> receipts, PriceCurrency desiredCurrency) {

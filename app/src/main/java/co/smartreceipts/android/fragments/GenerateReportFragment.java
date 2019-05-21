@@ -193,7 +193,7 @@ public class GenerateReportFragment extends WBFragment implements View.OnClickLi
         }
 
         final EmailAssistant emailAssistant = new EmailAssistant(getActivity(), navigationHandler,
-                reportResourcesManager, persistenceManager, trip, purchaseWallet, dateFormatter);
+                reportResourcesManager, persistenceManager, trip, purchaseWallet, dateFormatter, preferenceManager);
         emailAssistant.emailTrip(options);
     }
 }

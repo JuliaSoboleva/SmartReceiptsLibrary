@@ -510,6 +510,8 @@
     <string name="organization_update_success">Організацію успішно оновлено</string>
     <string name="organization_update_error">Щось пішло не так при оновленні організації</string>
     <string name="organization_update">Оновити налаштування організації</string>
+    <string name="report_details_title">Деталі</string>
+    <string name="report_summary_title">Резюме</string>
 
 </resources>
 
