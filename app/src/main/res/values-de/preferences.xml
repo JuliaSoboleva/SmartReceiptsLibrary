@@ -151,6 +151,10 @@
     <string name="pref_distance_as_price_summaryOn">Kilometergeld insgesamt in App Untertitel</string>
     <string name="pref_distance_as_price_summaryOff">Zurückgelegte Entfernung in App Untertitel anzeigen</string>
 
+    <string name="pref_distance_category_name_title">Name der Entfernungskategorie</string>
+    <string name="pref_distance_category_code_title">Entfernungskategorie-Code</string>
+
+
     <!-- ================= Preference Plus ================== -->
 
     <string name="pref_pro_pdf_footer_title">PDF Fußzeilentext</string>

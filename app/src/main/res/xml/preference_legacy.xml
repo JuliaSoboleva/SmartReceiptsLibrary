@@ -275,6 +275,14 @@
             android:summaryOff="@string/pref_distance_as_price_summaryOff"
             android:summaryOn="@string/pref_distance_as_price_summaryOn"
             android:title="@string/pref_distance_as_price_title" />
+        <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:defaultValue="@string/pref_distance_category_name_defaultValue"
+            android:key="@string/pref_distance_category_name_key"
+            android:title="@string/pref_distance_category_name_title" />
+        <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:defaultValue="@string/pref_distance_category_code_defaultValue"
+            android:key="@string/pref_distance_category_code_key"
+            android:title="@string/pref_distance_category_code_title" />
     </PreferenceCategory>
 
     <PreferenceCategory

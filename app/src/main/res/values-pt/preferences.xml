@@ -151,6 +151,9 @@
     <string name="pref_distance_as_price_summaryOn">Exibir preço por distância no subtítulo do app</string>
     <string name="pref_distance_as_price_summaryOff">Exibir distância percorrida no subtítulo do app</string>
 
+    <string name="pref_distance_category_name_title">Nome da categoria de distância</string>
+    <string name="pref_distance_category_code_title">Código de categoria de distância</string>
+
     <!-- ================= Preference Plus ================== -->
 
     <string name="pref_pro_pdf_footer_title">Texto do rodapé do PDF</string>

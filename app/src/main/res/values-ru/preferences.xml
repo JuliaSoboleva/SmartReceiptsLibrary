@@ -152,6 +152,9 @@
     <string name="pref_distance_as_price_summaryOn">Показывать стоимость маршрута в подзаголовке приложения</string>
     <string name="pref_distance_as_price_summaryOff">Показывать пройденную дистанцию в подзаголовке приложения</string>
 
+    <string name="pref_distance_category_name_title">Название категории Расстояние</string>
+    <string name="pref_distance_category_code_title">Код категории Расстояние</string>
+
     <!-- ================= Preference Plus ================== -->
 
     <string name="pref_pro_pdf_footer_title">Текст внизу PDF</string>

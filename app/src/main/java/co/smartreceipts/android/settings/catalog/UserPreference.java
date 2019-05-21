@@ -75,6 +75,8 @@ public final class UserPreference<T> {
         public static final UserPreference<Boolean> IncludeDistancePriceInReports = new UserPreference<>(Boolean.class, R.string.pref_distance_include_price_in_report_key, R.bool.pref_distance_include_price_in_report_defaultValue);
         public static final UserPreference<Boolean> PrintDistanceAsDailyReceiptInReports = new UserPreference<>(Boolean.class, R.string.pref_distance_print_daily_key, R.bool.pref_distance_print_daily_defaultValue);
         public static final UserPreference<Boolean> ShowDistanceAsPriceInSubtotal = new UserPreference<>(Boolean.class, R.string.pref_distance_as_price_key, R.bool.pref_distance_as_price_defaultValue);
+        public static final UserPreference<String> DistanceCategoryName = new UserPreference<>(String.class, R.string.pref_distance_category_name_key, R.string.pref_distance_category_name_defaultValue);
+        public static final UserPreference<String> DistanceCategoryCode = new UserPreference<>(String.class, R.string.pref_distance_category_code_key, R.string.pref_distance_category_code_defaultValue);
     }
 
     public static final class PlusSubscription {

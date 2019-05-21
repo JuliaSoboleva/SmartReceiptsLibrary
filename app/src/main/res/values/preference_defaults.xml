@@ -14,7 +14,7 @@
     <bool name="pref_receipt_match_comment_to_category_defaultValue">false</bool>
     <bool name="pref_receipt_reimbursable_only_defaultValue">false</bool>
     <bool name="pref_receipt_reimbursable_default_defaultValue">true</bool>
-    <bool name="pref_receipt_include_tax_field_defaultValue">false</bool>
+    <bool name="pref_receipt_include_tax_field_defaultValue">true</bool>
     <item name="pref_receipt_tax_percent_defaultValue" format="float" type="dimen">0.0</item>
     <bool name="pref_receipt_pre_tax_defaultValue">true</bool>
     <bool name="pref_receipt_enable_autocomplete_defaultValue">true</bool>
@@ -50,13 +50,16 @@
     <!-- ============= Preference Distance ================= -->
     <item name="pref_distance_rate_defaultValue" format="float" type="dimen">0.0</item>
     <bool name="pref_distance_include_price_in_report_defaultValue">true</bool>
-    <bool name="pref_distance_print_table_defaultValue">true</bool>
+    <bool name="pref_distance_print_table_defaultValue">false</bool>
     <bool name="pref_distance_print_daily_defaultValue">true</bool>
     <bool name="pref_distance_as_price_defaultValue">true</bool>
+    <string name="pref_distance_category_name_defaultValue">@string/distance</string>
+    <string name="pref_distance_category_code_defaultValue">@string/distance_code</string>
+
 
     <!-- ================= Preference Pro ================== -->
     <string name="pref_pro_pdf_footer_defaultValue"></string>
-    <bool name="pref_pro_separate_by_category_defaultValue">true</bool>
+    <bool name="pref_pro_separate_by_category_defaultValue">false</bool>
     <bool name="pref_pro_categorical_summation_defaultValue">true</bool>
     <bool name="pref_pro_omit_default_table_defaultValue">false</bool>
 

@@ -201,6 +201,10 @@
     <string name="pref_distance_as_price_title">Distance Price in Subtitle</string>
     <string name="pref_distance_as_price_summaryOn">Show distance price total in app subtitle</string>
     <string name="pref_distance_as_price_summaryOff">Show distance travelled in app subtitle</string>
+    <string name="pref_distance_category_name_key" translatable="false">DistanceAsCategoryName</string>
+    <string name="pref_distance_category_name_title">Distance Category Name</string>
+    <string name="pref_distance_category_code_key" translatable="false">DistanceAsCategoryCode</string>
+    <string name="pref_distance_category_code_title">Distance Category Code</string>
 
     <!-- ================= Preference Plus ================== -->
     <string name="pref_pro_pdf_footer_key" translatable="false">PdfFooterString</string>

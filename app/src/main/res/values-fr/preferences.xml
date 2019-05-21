@@ -151,6 +151,9 @@
     <string name="pref_distance_as_price_summaryOn">Afficher le total des frais de distance dans le sous-titre de l\'appli</string>
     <string name="pref_distance_as_price_summaryOff">Afficher la distance parcourue dans le sous-titre de l\'appli</string>
 
+    <string name="pref_distance_category_name_title">Nom de la catégorie de distance</string>
+    <string name="pref_distance_category_code_title">Code de catégorie de distance</string>
+
     <!-- ================= Preference Plus ================== -->
 
     <string name="pref_pro_pdf_footer_title">Pied de page du texte PDF</string>

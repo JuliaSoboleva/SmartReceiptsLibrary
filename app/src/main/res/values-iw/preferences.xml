@@ -116,6 +116,9 @@
     <string name="pref_distance_as_price_summaryOn">הראה סך הכול מחיר נסיעה בכותרת משנה</string>
     <string name="pref_distance_as_price_summaryOff">הראה סך הכול מרחק נסיעה בכותרת משנה</string>
 
+    <string name="pref_distance_category_name_title">שם קטגוריה מרחק</string>
+    <string name="pref_distance_category_code_title">מרחק קטגוריה קוד</string>
+
     <!-- ================= Preference Plus ================== -->
     <string name="pref_pro_pdf_footer_title">טקסט בתחתית מסמך פידיאף</string>
     <string name="pref_pro_separate_by_category_title">הפרד תשלומים לפי קטגוריה</string>
