@@ -510,5 +510,8 @@
     <string name="organization_update">Aktualisieren Sie die Organisationseinstellungen</string>
     <string name="report_details_title">Einzelheiten</string>
     <string name="report_summary_title">Zusammenfassung</string>
+    <string name="report_header_department">Abteilung: %s</string>
+    <string name="report_header_invoice_date">Rechnungsdatum: %s</string>
+    <string name="report_header_invoice_number">Rechnungsnummer: %s-%s</string>
 
 </resources>

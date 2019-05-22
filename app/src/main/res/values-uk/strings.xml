@@ -512,6 +512,9 @@
     <string name="organization_update">Оновити налаштування організації</string>
     <string name="report_details_title">Деталі</string>
     <string name="report_summary_title">Резюме</string>
+    <string name="report_header_department">Відділ: %s</string>
+    <string name="report_header_invoice_date">Дата рахунка-фактури: %s</string>
+    <string name="report_header_invoice_number">Номер рахунка-фактури: %s-%s</string>
 
 </resources>
 

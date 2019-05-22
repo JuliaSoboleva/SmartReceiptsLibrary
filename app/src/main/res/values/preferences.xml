@@ -41,11 +41,13 @@
     <string name="pref_general_date_format_M_d_yyyy_entryValue" translatable="false">M_d_yyyy</string>
     <string name="pref_general_date_format_d_M_yyyy_entryValue" translatable="false">d_M_yyyy</string>
     <string name="pref_general_date_format_yyyy_MM_dd_entryValue" translatable="false">yyyy_MM_dd</string>
+    <string name="pref_general_date_format_yyyyMMdd_entryValue" translatable="false">yyyyMMdd</string>
     <string-array name="pref_general_date_format_entryValues">
         <item>@string/pref_general_date_format_default_entryValue</item>
         <item>@string/pref_general_date_format_M_d_yyyy_entryValue</item>
         <item>@string/pref_general_date_format_d_M_yyyy_entryValue</item>
         <item>@string/pref_general_date_format_yyyy_MM_dd_entryValue</item>
+        <item>@string/pref_general_date_format_yyyyMMdd_entryValue</item>
     </string-array>
     <string name="pref_general_track_cost_center_key" translatable="false">trackcostcenter</string>
     <string name="pref_general_track_cost_center_title">Track Cost Center</string>
@@ -256,6 +258,8 @@
     <string name="pref_user_name_title">User Name</string>
     <string name="pref_user_email_key" translatable="false">UserEmail</string>
     <string name="pref_user_email_title">User Email</string>
+    <string name="pref_user_department_key" translatable="false">UserDepartment</string>
+    <string name="pref_user_department_title">Department</string>
 
     <!-- =============== Preference Misc =================== -->
     <string name="pref_no_category_auto_backup_wifi_only_key" translatable="false">AutoBackupWifiOnly</string>

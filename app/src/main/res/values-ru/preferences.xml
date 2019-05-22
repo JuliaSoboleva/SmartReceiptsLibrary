@@ -189,5 +189,7 @@
     <!-- =============== Preference User =================== -->
     <string name="pref_user_name_title">Имя пользователя</string>
     <string name="pref_user_email_title">Email пользователя</string>
+    <string name="pref_user_department_title">Отдел</string>
+
 
 </resources>

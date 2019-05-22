@@ -27,6 +27,7 @@
     <string name="pref_output_user_id_defaultValue" />
     <string name="pref_output_user_name_defaultValue" />
     <string name="pref_output_user_email_defaultValue" />
+    <string name="pref_user_department_defaultValue" />
     <bool name="pref_output_print_receipt_id_by_photo_defaultValue">true</bool>
     <bool name="pref_output_print_receipt_comment_by_photo_defaultValue">true</bool>
     <bool name="pref_output_receipts_landscape_defaultValue">false</bool>

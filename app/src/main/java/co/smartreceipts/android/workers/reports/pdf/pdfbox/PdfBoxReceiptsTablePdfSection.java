@@ -8,11 +8,16 @@ import com.tom_roush.pdfbox.pdmodel.PDDocument;
 import com.tom_roush.pdfbox.pdmodel.common.PDRectangle;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.TimeZone;
 
 import co.smartreceipts.android.R;
+import co.smartreceipts.android.date.DateFormatter;
+import co.smartreceipts.android.date.DisplayableDate;
 import co.smartreceipts.android.filters.LegacyReceiptFilter;
 import co.smartreceipts.android.model.Column;
 import co.smartreceipts.android.model.Distance;
@@ -165,24 +170,38 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
         // Print the report name as the title field
         final List<GridRowRenderer> headerRows = new ArrayList<>();
 
+        final DateFormatter dateFormatter = pdfBoxContext.getDateFormatter();
+
+
         /*User info section*/
         final String userName = preferenceManager.get(UserPreference.ReportOutput.UserName);
         final String userEmail = preferenceManager.get(UserPreference.ReportOutput.UserEmail);
         final String userId = preferenceManager.get(UserPreference.ReportOutput.UserId);
+        final String department = preferenceManager.get(UserPreference.ReportOutput.Department);
 
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, userName, PdfFontStyle.Default));
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, userEmail, PdfFontStyle.Default));
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, userId, PdfFontStyle.Default));
-        if (!userName.isEmpty() || !userEmail.isEmpty() || !userId.isEmpty()) {
-            headerRows.add(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
-        }
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.report_header_department, department), PdfFontStyle.Default));
+        headerRows.add(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
 
+        /*Invoice section*/
+        final DisplayableDate today = new DisplayableDate(new Date(Calendar.getInstance().getTimeInMillis()), TimeZone.getDefault());
+        final String invoiceDate = pdfBoxContext.getString(R.string.report_header_invoice_date, dateFormatter.getFormattedDate(today));
+        final String invoiceNumber = pdfBoxContext.getString(R.string.report_header_invoice_number, userId.replace(" ", "_"), dateFormatter.getFormattedDate(today, DateFormatter.DateFormatOption.yyyMMdd));
+
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, invoiceDate, PdfFontStyle.Default));
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, invoiceNumber, PdfFontStyle.Default));
+        headerRows.add(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
+
+
+        /*Report Title*/
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, trip.getName(), PdfFontStyle.Title));
 
         // Print the From: StartDate To: EndDate
         final String fromToPeriod = pdfBoxContext.getString(R.string.report_header_duration,
-                pdfBoxContext.getDateFormatter().getFormattedDate(trip.getStartDisplayableDate()),
-                pdfBoxContext.getDateFormatter().getFormattedDate(trip.getEndDisplayableDate()));
+                dateFormatter.getFormattedDate(trip.getStartDisplayableDate()),
+                dateFormatter.getFormattedDate(trip.getEndDisplayableDate()));
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, fromToPeriod, PdfFontStyle.Default));
 
         // Print the cost center (if present)

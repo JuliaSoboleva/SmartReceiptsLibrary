@@ -194,5 +194,7 @@
     <!-- =============== Preference User =================== -->
     <string name="pref_user_name_title">Nome de usuário</string>
     <string name="pref_user_email_title">E-mail do usuário</string>
+    <string name="pref_user_department_title">Departamento</string>
+
 
 </resources>

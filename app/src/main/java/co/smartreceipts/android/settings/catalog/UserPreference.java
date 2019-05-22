@@ -50,6 +50,7 @@ public final class UserPreference<T> {
         public static final UserPreference<Boolean> PrintReceiptsTableInLandscape = new UserPreference<>(Boolean.class, R.string.pref_output_receipts_landscape_key, R.bool.pref_output_receipts_landscape_defaultValue);
         public static final UserPreference<String> DefaultPdfPageSize = new UserPreference<>(String.class, R.string.pref_output_pdf_page_size_key, R.string.pref_output_pdf_page_size_defaultValue);
         public static final UserPreference<String> PreferredReportLanguage = new UserPreference<>(String.class, R.string.pref_output_preferred_language_key, R.string.pref_output_preferred_language_defaultValue);
+        public static final UserPreference<String> Department = new UserPreference<>(String.class, R.string.pref_user_department_key, R.string.pref_user_department_defaultValue);
     }
 
     public static final class Email {

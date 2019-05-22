@@ -510,5 +510,8 @@
     <string name="organization_update">Mettre à jour les paramètres de l\'organisation</string>
     <string name="report_details_title">Détails</string>
     <string name="report_summary_title">Résumé</string>
+    <string name="report_header_department">Département: %s</string>
+    <string name="report_header_invoice_date">Date de facturation: %s</string>
+    <string name="report_header_invoice_number">Numéro de facture: %s-%s</string>
 
 </resources>

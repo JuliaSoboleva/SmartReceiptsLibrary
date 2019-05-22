@@ -61,7 +61,9 @@ class DateFormatter @Inject constructor(private val context: Context,
          *  - "December 26, 2018" to appear as "2018/12/26"
          *  - "January 3, 2019" to appear as "2019/01/03"
          */
-        yyyy_MM_dd(R.string.pref_general_date_format_yyyy_MM_dd_entryValue);
+        yyyy_MM_dd(R.string.pref_general_date_format_yyyy_MM_dd_entryValue),
+
+        yyyMMdd(R.string.pref_general_date_format_yyyyMMdd_entryValue);
 
     }
 
@@ -211,6 +213,7 @@ class DateFormatter @Inject constructor(private val context: Context,
             DateFormatOption.M_d_yyyy -> "M${separator}d${separator}yyyy"
             DateFormatOption.d_M_yyyy -> "d${separator}M${separator}yyyy"
             DateFormatOption.yyyy_MM_dd -> "yyyy${separator}MM${separator}dd"
+            DateFormatOption.yyyMMdd -> "yyyMMdd"
             DateFormatOption.Default -> {
                 // For the default option, we get the system default and replace it's separator with the user preference
                 val systemDefaultDateFormat = android.text.format.DateFormat.getDateFormat(context) as SimpleDateFormat

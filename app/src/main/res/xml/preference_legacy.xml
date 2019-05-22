@@ -338,6 +338,10 @@
             android:key="@string/pref_output_user_id_key"
             android:title="@string/pref_output_user_id_title"
             wb:emptyValue="@string/pref_output_user_id_emptyValue" />
+        <wb.android.preferences.EmptyValueSummaryEditTextPreference
+            android:defaultValue="@string/pref_user_department_defaultValue"
+            android:key="@string/pref_user_department_key"
+            android:title="@string/pref_user_department_title" />
     </PreferenceCategory>
 
     <PreferenceCategory

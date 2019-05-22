@@ -512,5 +512,8 @@
     <string name="organization_update">Обновить настройки организации</string>
     <string name="report_details_title">Подробности</string>
     <string name="report_summary_title">Резюме</string>
+    <string name="report_header_department">Отдел: %s</string>
+    <string name="report_header_invoice_date">Дата счета: %s</string>
+    <string name="report_header_invoice_number">Номер счета: %s-%s</string>
 
 </resources>

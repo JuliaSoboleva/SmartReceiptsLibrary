@@ -530,5 +530,8 @@
     <string name="organization_update">עדכן הגדרות ארגון</string>
     <string name="report_details_title">פרטים</string>
     <string name="report_summary_title">סיכום</string>
+    <string name="report_header_department">%s :המחלקה</string>
+    <string name="report_header_invoice_date">%s :תאריך חשבונית</string>
+    <string name="report_header_invoice_number">%s-%s :מספר חשבונית</string>
 
 </resources>

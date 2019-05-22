@@ -153,5 +153,7 @@
     <!-- =============== Preference User =================== -->
     <string name="pref_user_name_title">שם משתמש</string>
     <string name="pref_user_email_title">דוא"ל משתמש</string>
+    <string name="pref_user_department_title">המחלקה</string>
+
 
 </resources>
