@@ -129,6 +129,8 @@ public class InteractivePdfBoxTest {
         when(userPreferenceManager.get(UserPreference.ReportOutput.PrintUserIdByPdfPhoto)).thenReturn(false);
         when(userPreferenceManager.get(UserPreference.ReportOutput.DefaultPdfPageSize)).thenReturn("A4");
         when(userPreferenceManager.get(UserPreference.ReportOutput.UserId)).thenReturn("");
+        when(userPreferenceManager.get(UserPreference.ReportOutput.UserName)).thenReturn("");
+        when(userPreferenceManager.get(UserPreference.ReportOutput.UserEmail)).thenReturn("");
         when(userPreferenceManager.get(UserPreference.Receipts.OnlyIncludeReimbursable)).thenReturn(false);
         when(userPreferenceManager.get(UserPreference.Receipts.UsePreTaxPrice)).thenReturn(false);
         when(userPreferenceManager.get(UserPreference.Receipts.IncludeTaxField)).thenReturn(false);

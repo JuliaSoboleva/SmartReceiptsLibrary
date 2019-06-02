@@ -50,7 +50,7 @@ class ModelUtilsTest {
     @Test
     fun getCurrencyCodeFormattedValue() {
         assertEquals(
-            "USD2.54",
+            "USD 2.54",
             ModelUtils.getCurrencyCodeFormattedValue(
                 BigDecimal(2.54),
                 PriceCurrency.getInstance("USD")

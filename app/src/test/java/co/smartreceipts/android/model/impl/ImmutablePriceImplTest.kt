@@ -66,8 +66,8 @@ class ImmutablePriceImplTest {
 
     @Test
     fun getCurrencyCodeFormattedPrice() {
-        assertEquals("USD1.25", price.currencyCodeFormattedPrice)
-        assertEquals("USD1.251", priceWith3DigitsOfPrecision.currencyCodeFormattedPrice)
+        assertEquals("USD 1.25", price.currencyCodeFormattedPrice)
+        assertEquals("USD 1.251", priceWith3DigitsOfPrecision.currencyCodeFormattedPrice)
     }
 
     @Test

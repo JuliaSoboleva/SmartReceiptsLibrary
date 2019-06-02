@@ -97,9 +97,9 @@ class ImmutableLegacyNetPriceImplTest {
 
     @Test
     fun getCurrencyCodeFormattedPrice() {
-        assertEquals("USD3.00", sameCurrencyPrice.currencyCodeFormattedPrice)
-        assertEquals("EUR1.00; USD2.00", differentCurrenciesNoExchangeRatePrice.currencyCodeFormattedPrice)
-        assertEquals("EUR1.00; USD2.00", differentCurrenciesWithExchangeRatePrice.currencyCodeFormattedPrice)
+        assertEquals("USD 3.00", sameCurrencyPrice.currencyCodeFormattedPrice)
+        assertEquals("EUR 1.00; USD 2.00", differentCurrenciesNoExchangeRatePrice.currencyCodeFormattedPrice)
+        assertEquals("EUR 1.00; USD 2.00", differentCurrenciesWithExchangeRatePrice.currencyCodeFormattedPrice)
     }
 
     @Test

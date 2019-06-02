@@ -154,7 +154,7 @@ public class UserPreferenceTest {
     @Test
     public void reportOutput() {
         Assert.assertEquals(UserPreference.ReportOutput.UserId.getType(), String.class);
-        Assert.assertEquals(name(UserPreference.ReportOutput.UserId), "UserName");
+        Assert.assertEquals(name(UserPreference.ReportOutput.UserId), "UserId");
         Assert.assertEquals(UserPreference.ReportOutput.UserId.getDefaultValue(), R.string.pref_output_user_id_defaultValue);
 
         Assert.assertEquals(UserPreference.ReportOutput.PrintUserIdByPdfPhoto.getType(), Boolean.class);
