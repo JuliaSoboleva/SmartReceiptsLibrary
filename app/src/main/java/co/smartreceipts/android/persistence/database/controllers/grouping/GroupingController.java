@@ -5,8 +5,10 @@ import android.content.Context;
 import com.github.mikephil.charting.data.Entry;
 import com.google.common.base.Preconditions;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -80,13 +82,23 @@ public class GroupingController {
                         taxes.add(receipt.getTax());
                     }
 
-                    final Price price = new PriceBuilderFactory().setPrices(prices, trip.getTripCurrency()).build();
-                    Preconditions.checkArgument(price instanceof ImmutableNetPriceImpl);
-                    ImmutableNetPriceImpl priceNet = (ImmutableNetPriceImpl) price;
+                    ImmutableNetPriceImpl priceNet;
+                    if (prices.isEmpty()) {
+                        priceNet = new ImmutableNetPriceImpl(trip.getTripCurrency(), Collections.emptyList());
+                    } else {
+                        final Price price = new PriceBuilderFactory().setPrices(prices, trip.getTripCurrency()).build();
+                        Preconditions.checkArgument(price instanceof ImmutableNetPriceImpl);
+                        priceNet = (ImmutableNetPriceImpl) price;
+                    }
 
-                    final Price tax = new PriceBuilderFactory().setPrices(taxes, trip.getTripCurrency()).build();
-                    Preconditions.checkArgument(tax instanceof ImmutableNetPriceImpl);
-                    ImmutableNetPriceImpl taxNet = (ImmutableNetPriceImpl) tax;
+                    ImmutableNetPriceImpl taxNet;
+                    if (taxes.isEmpty()) {
+                        taxNet = new ImmutableNetPriceImpl(trip.getTripCurrency(), Collections.emptyList());
+                    } else {
+                        final Price tax = new PriceBuilderFactory().setPrices(taxes, trip.getTripCurrency()).build();
+                        Preconditions.checkArgument(tax instanceof ImmutableNetPriceImpl);
+                        taxNet = (ImmutableNetPriceImpl) tax;
+                    }
 
                     return new SumCategoryGroupingResult(categoryGroupingResult.getCategory(), trip.getTripCurrency(),
                             priceNet, taxNet, categoryGroupingResult.getReceipts().size());
@@ -143,6 +155,7 @@ public class GroupingController {
 
     public Single<List<LabeledGraphEntry>> getSummationByCategoryAsGraphEntries(Trip trip) {
         return getSummationByCategory(trip)
+                .filter(sumCategoryGroupingResult -> !sumCategoryGroupingResult.getNetPrice().getPrice().equals(BigDecimal.ZERO))
                 .map(sumCategoryGroupingResult -> new LabeledGraphEntry(sumCategoryGroupingResult.getNetPrice().getPriceAsFloat(),
                         sumCategoryGroupingResult.getCategory().getName()))
                 .toList();
