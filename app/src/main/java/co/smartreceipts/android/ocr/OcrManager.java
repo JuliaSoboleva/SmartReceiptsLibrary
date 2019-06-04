@@ -2,7 +2,6 @@ package co.smartreceipts.android.ocr;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
 
 import com.google.common.base.Preconditions;
 
@@ -23,11 +22,8 @@ import co.smartreceipts.android.ocr.apis.OcrService;
 import co.smartreceipts.android.ocr.apis.model.OcrResponse;
 import co.smartreceipts.android.ocr.apis.model.RecongitionRequest;
 import co.smartreceipts.android.ocr.purchases.OcrPurchaseTracker;
-import co.smartreceipts.android.ocr.push.OcrPushMessageReceiver;
-import co.smartreceipts.android.ocr.push.OcrPushMessageReceiverFactory;
 import co.smartreceipts.android.ocr.widget.alert.OcrProcessingStatus;
 import co.smartreceipts.android.ocr.widget.tooltip.OcrInformationalTooltipInteractor;
-import co.smartreceipts.android.push.PushManager;
 import co.smartreceipts.android.settings.UserPreferenceManager;
 import co.smartreceipts.android.settings.catalog.UserPreference;
 import co.smartreceipts.android.utils.ConfigurableResourceFeature;
@@ -45,12 +41,10 @@ public class OcrManager {
     private final S3Manager s3Manager;
     private final IdentityManager identityManager;
     private final WebServiceManager ocrWebServiceManager;
-    private final PushManager pushManager;
     private final UserPreferenceManager userPreferenceManager;
     private final Analytics analytics;
     private final OcrPurchaseTracker ocrPurchaseTracker;
     private final OcrInformationalTooltipInteractor ocrInformationalTooltipInteractor;
-    private final OcrPushMessageReceiverFactory pushMessageReceiverFactory;
     private final ConfigurationManager configurationManager;
     private final BehaviorSubject<OcrProcessingStatus> ocrProcessingStatusSubject = BehaviorSubject.createDefault(OcrProcessingStatus.Idle);
 
@@ -59,37 +53,19 @@ public class OcrManager {
                       @NonNull S3Manager s3Manager,
                       @NonNull IdentityManager identityManager,
                       @NonNull WebServiceManager webServiceManager,
-                      @NonNull PushManager pushManager,
                       @NonNull OcrPurchaseTracker ocrPurchaseTracker,
                       @NonNull OcrInformationalTooltipInteractor ocrInformationalTooltipInteractor,
                       @NonNull UserPreferenceManager userPreferenceManager,
                       @NonNull Analytics analytics,
                       @NonNull ConfigurationManager configurationManager) {
-        this(context, s3Manager, identityManager, webServiceManager, pushManager, ocrPurchaseTracker, ocrInformationalTooltipInteractor, userPreferenceManager, analytics, new OcrPushMessageReceiverFactory(), configurationManager);
-    }
-
-    @VisibleForTesting
-    OcrManager(@NonNull Context context,
-               @NonNull S3Manager s3Manager,
-               @NonNull IdentityManager identityManager,
-               @NonNull WebServiceManager webServiceManager,
-               @NonNull PushManager pushManager,
-               @NonNull OcrPurchaseTracker ocrPurchaseTracker,
-               @NonNull OcrInformationalTooltipInteractor ocrInformationalTooltipInteractor,
-               @NonNull UserPreferenceManager userPreferenceManager,
-               @NonNull Analytics analytics,
-               @NonNull OcrPushMessageReceiverFactory pushMessageReceiverFactory,
-               @NonNull ConfigurationManager configurationManager) {
         this.context = Preconditions.checkNotNull(context.getApplicationContext());
         this.s3Manager = Preconditions.checkNotNull(s3Manager);
         this.identityManager = Preconditions.checkNotNull(identityManager);
         this.ocrWebServiceManager = Preconditions.checkNotNull(webServiceManager);
-        this.pushManager = Preconditions.checkNotNull(pushManager);
         this.ocrPurchaseTracker = Preconditions.checkNotNull(ocrPurchaseTracker);
         this.ocrInformationalTooltipInteractor = Preconditions.checkNotNull(ocrInformationalTooltipInteractor);
         this.userPreferenceManager = Preconditions.checkNotNull(userPreferenceManager);
         this.analytics = Preconditions.checkNotNull(analytics);
-        this.pushMessageReceiverFactory = Preconditions.checkNotNull(pushMessageReceiverFactory);
         this.configurationManager = Preconditions.checkNotNull(configurationManager);
     }
 
@@ -106,11 +82,9 @@ public class OcrManager {
         final boolean isOcrEnabled = configurationManager.isEnabled(ConfigurableResourceFeature.Ocr);
         if (isOcrEnabled && identityManager.isLoggedIn() && ocrPurchaseTracker.hasAvailableScans() && userPreferenceManager.get(UserPreference.Misc.OcrIsEnabled)) {
             Logger.info(OcrManager.this, "Initiating scan of {}.", file);
-            final OcrPushMessageReceiver ocrPushMessageReceiver = pushMessageReceiverFactory.get();
             ocrProcessingStatusSubject.onNext(OcrProcessingStatus.UploadingImage);
             return s3Manager.upload(file, OCR_FOLDER)
                     .doOnSubscribe(disposable -> {
-                        pushManager.registerReceiver(ocrPushMessageReceiver);
                         analytics.record(Events.Ocr.OcrRequestStarted);
                     })
                     .subscribeOn(Schedulers.io())
@@ -137,14 +111,7 @@ public class OcrManager {
                     })
                     .flatMap(recognitionId -> {
                         Logger.debug(OcrManager.this, "Awaiting completion of recognition request {}.", recognitionId);
-                        return ocrPushMessageReceiver.getOcrPushResponse()
-                                .doOnNext(ignore -> analytics.record(Events.Ocr.OcrPushMessageReceived))
-                                .doOnError(ignore -> analytics.record(Events.Ocr.OcrPushMessageTimeOut))
-                                .onErrorReturn(throwable -> {
-                                    Logger.warn(OcrManager.this, "Ocr request timed out. Attempting to get response as is");
-                                    return new Object();
-                                })
-                                .map(o -> recognitionId);
+                        return Observable.just(recognitionId);
                     })
                     .flatMap(recognitionId -> {
                         Logger.debug(OcrManager.this, "Scan completed. Fetching results for {}.", recognitionId);
@@ -173,7 +140,6 @@ public class OcrManager {
                     .onErrorReturnItem(new OcrResponse())
                     .doOnTerminate(() -> {
                         ocrProcessingStatusSubject.onNext(OcrProcessingStatus.Idle);
-                        pushManager.unregisterReceiver(ocrPushMessageReceiver);
                     });
         } else {
             Logger.debug(OcrManager.this, "Ignoring ocr scan of as: isFeatureEnabled = {}, isLoggedIn = {}, hasAvailableScans = {}.", isOcrEnabled, identityManager.isLoggedIn(), ocrPurchaseTracker.hasAvailableScans());

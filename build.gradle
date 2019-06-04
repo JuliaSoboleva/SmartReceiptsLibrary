@@ -6,15 +6,12 @@ buildscript {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
         maven { url 'http://repository.adincube.com/maven' }
 
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
-        classpath 'com.google.gms:google-services:4.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "io.fabric.tools:gradle:1.28.1"
     }
 }
 
@@ -25,7 +22,6 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-        maven { url 'https://maven.fabric.io/public' }
         maven { url 'http://repository.adincube.com/maven' }
     }
 }

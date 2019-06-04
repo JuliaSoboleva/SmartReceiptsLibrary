@@ -14,7 +14,6 @@ import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import javax.inject.Inject;
 
 import co.smartreceipts.android.analytics.Analytics;
-import co.smartreceipts.android.analytics.crash.CrashReporter;
 import co.smartreceipts.android.aws.cognito.CognitoManager;
 import co.smartreceipts.android.date.DateFormatter;
 import co.smartreceipts.android.di.AppComponent;
@@ -27,7 +26,6 @@ import co.smartreceipts.android.ocr.OcrManager;
 import co.smartreceipts.android.persistence.DatabaseHelper;
 import co.smartreceipts.android.persistence.database.tables.ordering.OrderingPreferencesManager;
 import co.smartreceipts.android.purchases.PurchaseManager;
-import co.smartreceipts.android.push.PushManager;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
 import co.smartreceipts.android.receipts.ordering.ReceiptsOrderer;
 import co.smartreceipts.android.settings.UserPreferenceManager;
@@ -84,16 +82,10 @@ public class SmartReceiptsApplication extends Application implements HasActivity
     PurchaseManager purchaseManager;
 
     @Inject
-    PushManager pushManager;
-
-    @Inject
     CognitoManager cognitoManager;
 
     @Inject
     OcrManager ocrManager;
-
-    @Inject
-    CrashReporter crashReporter;
 
     @Inject
     OrderingPreferencesManager orderingPreferencesManager;
@@ -206,10 +198,8 @@ public class SmartReceiptsApplication extends Application implements HasActivity
         dateFormatter.initialize();
         onLaunchDataPreFetcher.loadUserData();
         identityManager.initialize();
-        pushManager.initialize();
         cognitoManager.initialize();
         ocrManager.initialize();
-        crashReporter.initialize();
         receiptsOrderer.initialize();
         picassoInitializer.initialize();
         markedForDeletionCleaner.safelyDeleteAllOutstandingItems();

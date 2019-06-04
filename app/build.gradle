@@ -6,7 +6,6 @@ plugins {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.kotlin.android.extensions'
-apply plugin: 'io.fabric'
 apply plugin: 'kotlin-kapt'
 
 androidExtensions {
@@ -88,7 +87,7 @@ android {
             dimension "versionType"
         }
         plusFlavor {
-            applicationId "wb.receiptspro"
+            applicationId "com.yoozit"
             dimension "versionType"
         }
     }
@@ -128,11 +127,6 @@ android {
         implementation "com.android.support:multidex:$MULTIDEX_VERSION"
 
         implementation "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT_VERSION"
-
-        implementation "com.google.android.gms:play-services-drive:$DRIVE_API_VERSION"
-        implementation "com.google.firebase:firebase-core:$FIREBASE_CORE_VERSION"
-        implementation "com.google.firebase:firebase-crash:$FIREBASE_CORE_VERSION"
-        implementation "com.google.firebase:firebase-messaging:$FIREBASE_MESSAGING_VERSION"
 
         implementation "com.squareup.picasso:picasso:$PICASSO_VERSION"
         implementation "com.squareup.okhttp3:okhttp:$OK_HTTP_VERSION"
@@ -182,9 +176,6 @@ android {
         kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
         kapt "com.google.dagger:dagger-android-processor:$DAGGER_VERSION"
 
-        // Crashalytics
-        implementation "com.crashlytics.sdk.android:crashlytics:$CRASHLYTICS_VERSION"
-
         // Unit Tests
         testImplementation "org.robolectric:robolectric:$ROBOLECTRIC_VERSION"
         testImplementation "junit:junit:$JUNIT_VERSION"
@@ -202,15 +193,9 @@ android {
         debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:$LEAK_CANARY_VERSION"
         releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$LEAK_CANARY_VERSION"
 
-        // Special dependencies for free flavor
-        freeImplementation "com.google.android.gms:play-services-analytics:$FIREBASE_CORE_VERSION"
-
-        // Free ads
-        freeImplementation "com.google.android.gms:play-services-ads:$ADMOB_VERSION"
     }
 
     // Note: This version is controlled in the base build file
-    apply plugin: "com.google.gms.google-services"
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8

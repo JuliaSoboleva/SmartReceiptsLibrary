@@ -125,28 +125,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize" >
         </activity>
 
-        <!-- DriveEventService (and subclasses) must be exported -->
-        <service android:name=".sync.drive.services.DriveCompletionEventService" android:exported="true"
-                 tools:ignore="ExportedService">
-            <intent-filter>
-                <action android:name="com.google.android.gms.drive.events.HANDLE_EVENT"/>
-            </intent-filter>
-        </service>
-
-        <!-- FirebaseMessagingService performs security checks at runtime, no need for explicit permissions despite exported="true" -->
-        <service android:name=".push.services.MyFirebaseMessagingService" android:exported="true"
-                 tools:ignore="ExportedService" >
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-        <service android:name=".push.services.FirebaseTokenRefreshService" android:exported="true"
-                 tools:ignore="ExportedService" >
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
-
         <!-- Disable Firebase from collecting the Ad ID -->
         <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
 
