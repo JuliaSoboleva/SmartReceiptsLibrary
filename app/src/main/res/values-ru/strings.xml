@@ -79,7 +79,7 @@
     <string name="report_header_receipts_total_reimbursable">Всего (возмещаемые): %s</string>
     <string name="report_header_grand_total">Всего: %s</string>
     <string name="report_header_cost_center">Центр расходов: %s</string>
-    <string name="report_header_comment">Комментарий: %s</string>
+    <string name="report_header_comment">Описание отчета о расходах: %s</string>
     <string name="report_pdf_generation_error">При создании отчета произошла ошибка</string>
     <string name="report_pdf_error_too_many_columns_title">Слишком много колонок</string>
     <string name="report_pdf_error_too_many_columns_message">Не хватает места, чтобы разместить все колонки в отчете. Пожалуйста, попробуйте ограничить количество колонок в настройках.</string>
@@ -515,5 +515,9 @@
     <string name="report_header_department">Отдел: %s</string>
     <string name="report_header_invoice_date">Дата счета: %s</string>
     <string name="report_header_invoice_number">Номер счета: %s-%s</string>
+    <string name="report_header_email">Адрес электронной почты: %s</string>
+    <string name="report_header_employee_id">Идентификатор сотрудника: %s</string>
+    <string name="report_header_employee_name">Имя сотрудника: %s</string>
+    <string name="report_header_report_title">Заголовок отчета о расходах: %s</string>
 
 </resources>

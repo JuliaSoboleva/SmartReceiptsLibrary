@@ -79,7 +79,7 @@
     <string name="report_header_receipts_total_reimbursable">Total (Remboursable) : %s</string>
     <string name="report_header_grand_total">Total : %s</string>
     <string name="report_header_cost_center">Centre de coûts : %s</string>
-    <string name="report_header_comment">Commentaire sur le rapport : %s</string>
+    <string name="report_header_comment">Description du rapport de dépenses: %s</string>
     <string name="report_pdf_generation_error">Une erreur est survenue lors de la création du rapport</string>
     <string name="report_pdf_error_too_many_columns_title">Trop de colonnes</string>
     <string name="report_pdf_error_too_many_columns_message">Espace insuffisant pour insérer toutes les colonnes dans le rapport. Veuillez essayer de limiter le nombre de colonnes dans les paramètres.</string>
@@ -513,5 +513,9 @@
     <string name="report_header_department">Département: %s</string>
     <string name="report_header_invoice_date">Date de facturation: %s</string>
     <string name="report_header_invoice_number">Numéro de facture: %s-%s</string>
+    <string name="report_header_email">Adresse électronique: %s</string>
+    <string name="report_header_employee_id">Identifiant d\'employé: %s</string>
+    <string name="report_header_employee_name">Nom de l\'employé: %s</string>
+    <string name="report_header_report_title">Titre du rapport de dépenses: %s</string>
 
 </resources>

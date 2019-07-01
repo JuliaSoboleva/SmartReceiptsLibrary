@@ -79,7 +79,7 @@
     <string name="report_header_receipts_total_reimbursable">Total (reembolsáveis): %s</string>
     <string name="report_header_grand_total">Total: %s</string>
     <string name="report_header_cost_center">Centro de custos: %s</string>
-    <string name="report_header_comment">Comentários em relatórios: %s</string>
+    <string name="report_header_comment">Descrição do relatório de despesas: %s</string>
     <string name="report_pdf_generation_error">Ocorreu um erro ao gerar o relatório</string>
     <string name="report_pdf_error_too_many_columns_title">Excesso de colunas</string>
     <string name="report_pdf_error_too_many_columns_message">Não há espaço suficiente para todas as colunas no relatório. Tente limitar o número de colunas nas Configurações</string>
@@ -513,5 +513,9 @@
     <string name="report_header_department">Departamento: %s</string>
     <string name="report_header_invoice_date">Data da fatura: %s</string>
     <string name="report_header_invoice_number">Número da fatura: %s-%s</string>
+    <string name="report_header_email">Endereço de email: %s</string>
+    <string name="report_header_employee_id">ID do funcionário: %s</string>
+    <string name="report_header_employee_name">Nome do funcionário: %s</string>
+    <string name="report_header_report_title">Título do relatório de despesas: %s</string>
 
 </resources>

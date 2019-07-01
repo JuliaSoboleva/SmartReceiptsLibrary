@@ -179,9 +179,9 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
         final String userId = preferenceManager.get(UserPreference.ReportOutput.UserId);
         final String department = preferenceManager.get(UserPreference.ReportOutput.Department);
 
-        headerRows.add(constructHeaderGridRowRenderer(pdDocument, userName, PdfFontStyle.Default));
-        headerRows.add(constructHeaderGridRowRenderer(pdDocument, userEmail, PdfFontStyle.Default));
-        headerRows.add(constructHeaderGridRowRenderer(pdDocument, userId, PdfFontStyle.Default));
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.report_header_employee_name, userName), PdfFontStyle.DefaultBold));
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.report_header_email, userEmail), PdfFontStyle.Default));
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.report_header_employee_id, userId), PdfFontStyle.Default));
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.report_header_department, department), PdfFontStyle.Default));
         headerRows.add(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
 
@@ -192,11 +192,31 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
 
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, invoiceDate, PdfFontStyle.Default));
         headerRows.add(constructHeaderGridRowRenderer(pdDocument, invoiceNumber, PdfFontStyle.Default));
+        // Print the various tax totals if the IncludeTaxField is true and we have taxes
+        if (preferenceManager.get(UserPreference.Receipts.IncludeTaxField) && !ModelUtils.isPriceZero(data.getTaxPrice())) {
+
+            // Print total WITHOUT taxes
+            headerRows.add(constructHeaderGridRowRenderer(pdDocument,
+                    pdfBoxContext.getString(R.string.report_header_grand_total_no_tax, data.getGrandTotalWithOutTaxPrice().getCurrencyFormattedPrice()),
+                    PdfFontStyle.Default));
+
+            // Print taxes
+            headerRows.add(constructHeaderGridRowRenderer(pdDocument,
+                    pdfBoxContext.getString(R.string.report_header_receipts_total_tax, data.getTaxPrice().getCurrencyFormattedPrice()),
+                    PdfFontStyle.Default));
+
+        }
+        // Print the grand total
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument,
+                pdfBoxContext.getString(R.string.report_header_grand_total, data.getGrandTotalPrice().getCurrencyFormattedPrice()),
+                PdfFontStyle.DefaultBold));
+        // Print report currency
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.RECEIPTMENU_FIELD_CURRENCY) + ": " + trip.getTripCurrency().getCurrencyCode(), PdfFontStyle.Default));
         headerRows.add(new GridRowRenderer(new EmptyRenderer(0, EMPTY_ROW_HEIGHT_SMALL)));
 
 
         /*Report Title*/
-        headerRows.add(constructHeaderGridRowRenderer(pdDocument, trip.getName(), PdfFontStyle.Title));
+        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.report_header_report_title, trip.getName()), PdfFontStyle.DefaultBold));
 
         // Print the From: StartDate To: EndDate
         final String fromToPeriod = pdfBoxContext.getString(R.string.report_header_duration,
@@ -218,26 +238,6 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
                     PdfFontStyle.Default));
         }
 
-        // Print the various tax totals if the IncludeTaxField is true and we have taxes
-        if (preferenceManager.get(UserPreference.Receipts.IncludeTaxField) && !ModelUtils.isPriceZero(data.getTaxPrice())) {
-
-            // Print total WITHOUT taxes
-            headerRows.add(constructHeaderGridRowRenderer(pdDocument,
-                    pdfBoxContext.getString(R.string.report_header_grand_total_no_tax, data.getGrandTotalWithOutTaxPrice().getCurrencyFormattedPrice()),
-                    PdfFontStyle.Default));
-
-            // Print taxes
-            headerRows.add(constructHeaderGridRowRenderer(pdDocument,
-                    pdfBoxContext.getString(R.string.report_header_receipts_total_tax, data.getTaxPrice().getCurrencyFormattedPrice()),
-                    PdfFontStyle.Default));
-
-        }
-
-        // Print the grand total
-        headerRows.add(constructHeaderGridRowRenderer(pdDocument,
-                pdfBoxContext.getString(R.string.report_header_grand_total, data.getGrandTotalPrice().getCurrencyFormattedPrice()),
-                PdfFontStyle.DefaultBold));
-
 
         // Print the grand total (reimbursable)
         if (!preferenceManager.get(UserPreference.Receipts.OnlyIncludeReimbursable) && !data.getGrandTotalPrice().equals(data.getReimbursableGrandTotalPrice())) {
@@ -245,9 +245,6 @@ public class PdfBoxReceiptsTablePdfSection extends PdfBoxSection {
                     pdfBoxContext.getString(R.string.report_header_receipts_total_reimbursable, data.getReimbursableGrandTotalPrice().getCurrencyFormattedPrice()),
                     PdfFontStyle.DefaultBold));
         }
-
-        // Print report currency
-        headerRows.add(constructHeaderGridRowRenderer(pdDocument, pdfBoxContext.getString(R.string.RECEIPTMENU_FIELD_CURRENCY) + ": " + trip.getTripCurrency().getCurrencyCode(), PdfFontStyle.Default));
 
 
         for (final GridRowRenderer headerRow : headerRows) {

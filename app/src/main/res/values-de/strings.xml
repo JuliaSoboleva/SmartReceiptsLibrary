@@ -79,7 +79,7 @@
     <string name="report_header_receipts_total_reimbursable">Gesamtsumme (Erstattungsfähig): %s</string>
     <string name="report_header_grand_total">Gesamtsumme: %s</string>
     <string name="report_header_cost_center">Kostenstelle: %s</string>
-    <string name="report_header_comment">Kommentar melden: %s</string>
+    <string name="report_header_comment">Beschreibung der Spesenabrechnung: %s</string>
     <string name="report_pdf_generation_error">Es gab einen Fehler bei der Erstellung des Berichts</string>
     <string name="report_pdf_error_too_many_columns_title">Zu viele Spalten</string>
     <string name="report_pdf_error_too_many_columns_message">Es gibt nicht genug Platz, um alle Spalten in den Bericht aufzunehmen. Bitte versuchen Sie die Anzahl der Spalten in den Einstellungen zu begrenzen.</string>
@@ -513,5 +513,9 @@
     <string name="report_header_department">Abteilung: %s</string>
     <string name="report_header_invoice_date">Rechnungsdatum: %s</string>
     <string name="report_header_invoice_number">Rechnungsnummer: %s-%s</string>
+    <string name="report_header_email">E-Mail-Addresse: %s</string>
+    <string name="report_header_employee_id">Mitarbeiter-ID: %s</string>
+    <string name="report_header_employee_name">Name des Mitarbeiters: %s</string>
+    <string name="report_header_report_title">Titel der Spesenabrechnung: %s</string>
 
 </resources>

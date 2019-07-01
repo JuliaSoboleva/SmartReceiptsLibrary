@@ -79,7 +79,7 @@
     <string name="report_header_receipts_total_reimbursable">Загалом (що відшкодовуються): %s</string>
     <string name="report_header_grand_total">Загалом: %s</string>
     <string name="report_header_cost_center">Центр витрат: %s</string>
-    <string name="report_header_comment">Коментар: %s</string>
+    <string name="report_header_comment">Опис звіту про витрати: %s</string>
     <string name="report_pdf_generation_error">При створенні звіту сталася помилка</string>
     <string name="report_pdf_error_too_many_columns_title">Занадто багато колонок</string>
     <string name="report_pdf_error_too_many_columns_message">Бракує місця, щоб розмістити всі колонки в звіті. Будь ласка, спробуйте обмежити кількість колонок в налаштуваннях.</string>
@@ -515,6 +515,10 @@
     <string name="report_header_department">Відділ: %s</string>
     <string name="report_header_invoice_date">Дата рахунка-фактури: %s</string>
     <string name="report_header_invoice_number">Номер рахунка-фактури: %s-%s</string>
+    <string name="report_header_email">Адреса електронної пошти: %s</string>
+    <string name="report_header_employee_id">Ідентифікатор працівника: %s</string>
+    <string name="report_header_employee_name">Ім\'я співробітника: %s</string>
+    <string name="report_header_report_title">Назва звіту про витрати: %s</string>
 
 </resources>
 

@@ -78,7 +78,7 @@
     <string name="report_header_receipts_total_reimbursable">%s :סה״כ (זכאי להחזרים)</string>
     <string name="report_header_grand_total">%s :סה״כ</string>
     <string name="report_header_cost_center">%s :מרכז מחיר</string>
-    <string name="report_header_comment">%s :הערה לדוח</string>
+    <string name="report_header_comment">תיאור דוח חשבון: s%</string>
     <string name="report_pdf_generation_error">שגיאה בייצור הדוח</string>
     <string name="report_pdf_error_too_many_columns_title">יותר מדי עמודות</string>
 	<string name="report_pdf_error_too_many_columns_message">.אין מספיק מקום ע״מ להכיל את כל העמודות בדוח. אנא נסה להגביל את מספר העמודות בהגדרות</string>
@@ -533,5 +533,9 @@
     <string name="report_header_department">%s :המחלקה</string>
     <string name="report_header_invoice_date">%s :תאריך חשבונית</string>
     <string name="report_header_invoice_number">%s-%s :מספר חשבונית</string>
+    <string name="report_header_email">כתובת דוא\"ל: %s</string>
+    <string name="report_header_employee_id">מזהה עובד: %s</string>
+    <string name="report_header_employee_name">שם העובד: %s</string>
+    <string name="report_header_report_title">שם דוח הוצאות: %s</string>
 
 </resources>

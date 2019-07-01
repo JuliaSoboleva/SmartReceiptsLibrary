@@ -81,7 +81,7 @@
     <string name="report_header_grand_total_no_tax">@string/report_header_receipts_total_no_tax</string>
     <string name="report_header_grand_total">Total amount: %s</string>
     <string name="report_header_cost_center">Cost Center: %s</string>
-    <string name="report_header_comment">Expense Report Comment: %s</string>
+    <string name="report_header_comment">Expense report description: %s</string>
     <string name="report_pdf_generation_error">There was an error generating the report</string>
     <string name="report_pdf_error_too_many_columns_title">Too many columns</string>
     <string name="report_pdf_error_too_many_columns_message">There is not enough space to fit all the columns in the report. Please try limiting the number of columns in Settings.</string>
@@ -534,8 +534,15 @@
     <string name="report_details_title">Details</string>
     <string name="report_summary_title">Summary</string>
 
+    <string name="report_header_employee_name">Employee name: %s</string>
+    <string name="report_header_email">Email address: %s</string>
+    <string name="report_header_employee_id">Employee ID: %s</string>
+    <string name="report_header_department">Department: %s</string>
+    <!--"login_field_email_hint">Email Address</string-->
+
     <string name="report_header_invoice_date">Invoice date: %s</string>
     <string name="report_header_invoice_number">Invoice number: %s-%s</string>
-    <string name="report_header_department">Department: %s</string>
+
+    <string name="report_header_report_title">Expense report title: %s</string>
 
 </resources>
