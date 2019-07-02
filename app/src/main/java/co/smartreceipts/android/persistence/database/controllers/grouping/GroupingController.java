@@ -8,7 +8,6 @@ import com.google.common.base.Preconditions;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -68,7 +67,7 @@ public class GroupingController {
     }
 
     private Observable<CategoryGroupingResult> getReceiptsGroupedByCategoryWithDistances(Trip trip) {
-        return Observable.concat(getReceiptsGroupedByCategory(trip), getDistancesGroupingResult(trip).toObservable());
+        return Observable.concat(getReceiptsGroupedByCategory(trip), getDistancesGroupingResult(trip));
     }
 
     public Observable<SumCategoryGroupingResult> getSummationByCategory(Trip trip) {
@@ -82,23 +81,13 @@ public class GroupingController {
                         taxes.add(receipt.getTax());
                     }
 
-                    ImmutableNetPriceImpl priceNet;
-                    if (prices.isEmpty()) {
-                        priceNet = new ImmutableNetPriceImpl(trip.getTripCurrency(), Collections.emptyList());
-                    } else {
-                        final Price price = new PriceBuilderFactory().setPrices(prices, trip.getTripCurrency()).build();
-                        Preconditions.checkArgument(price instanceof ImmutableNetPriceImpl);
-                        priceNet = (ImmutableNetPriceImpl) price;
-                    }
+                    final Price price = new PriceBuilderFactory().setPrices(prices, trip.getTripCurrency()).build();
+                    Preconditions.checkArgument(price instanceof ImmutableNetPriceImpl);
+                    ImmutableNetPriceImpl priceNet = (ImmutableNetPriceImpl) price;
 
-                    ImmutableNetPriceImpl taxNet;
-                    if (taxes.isEmpty()) {
-                        taxNet = new ImmutableNetPriceImpl(trip.getTripCurrency(), Collections.emptyList());
-                    } else {
-                        final Price tax = new PriceBuilderFactory().setPrices(taxes, trip.getTripCurrency()).build();
-                        Preconditions.checkArgument(tax instanceof ImmutableNetPriceImpl);
-                        taxNet = (ImmutableNetPriceImpl) tax;
-                    }
+                    final Price tax = new PriceBuilderFactory().setPrices(taxes, trip.getTripCurrency()).build();
+                    Preconditions.checkArgument(tax instanceof ImmutableNetPriceImpl);
+                    ImmutableNetPriceImpl taxNet = (ImmutableNetPriceImpl) tax;
 
                     return new SumCategoryGroupingResult(categoryGroupingResult.getCategory(), trip.getTripCurrency(),
                             priceNet, taxNet, categoryGroupingResult.getReceipts().size());
@@ -190,14 +179,16 @@ public class GroupingController {
                 .flatMapIterable(receipts -> receipts);
     }
 
-    private Single<List<Receipt>> getDistancesConvertedToReceipts(Trip trip) {
+    private Observable<List<Receipt>> getDistancesConvertedToReceipts(Trip trip) {
         return databaseHelper.getDistanceTable()
                 .get(trip)
+                .toObservable()
+                .filter(distances -> !distances.isEmpty())
                 .map(distances -> new DistanceToReceiptsConverter(context, dateFormatter, preferenceManager).convert(distances))
                 .subscribeOn(Schedulers.io());
     }
 
-    private Single<CategoryGroupingResult> getDistancesGroupingResult(Trip trip) {
+    private Observable<CategoryGroupingResult> getDistancesGroupingResult(Trip trip) {
         return getDistancesConvertedToReceipts(trip)
                 .map(receipts -> {
                     final Category distanceCategory = new CategoryBuilderFactory()

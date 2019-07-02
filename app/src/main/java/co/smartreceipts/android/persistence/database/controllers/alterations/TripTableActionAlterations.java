@@ -55,6 +55,7 @@ public class TripTableActionAlterations extends StubTableActionAlterations<Trip>
         return Observable.just(trips)
                 .flatMapIterable(trips1 -> trips1)
                 .doOnNext(mDatabaseHelper::getTripPriceAndDailyPrice)
+                .doOnNext((trip) -> Logger.debug(this, "#postGet trip: {}", trip))
                 .toList();
     }
 
